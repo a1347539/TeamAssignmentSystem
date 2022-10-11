@@ -1,6 +1,6 @@
 # comp3111 Project - Group 15 - LHS
 
-### This is the branch of a1347539  
+### This is the branch of phyqh  
 
 Member #1  - Li Chun Tak  
 Email: ctliaj@connect.ust.hk  
