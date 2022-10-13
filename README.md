@@ -1,7 +1,5 @@
 # comp3111 Project - Group 15 - LHS
 
-### This is the branch of szeu  
-
 Member #1  - Li Chun Tak  
 Email: ctliaj@connect.ust.hk  
 Github ID: a1347539  
