@@ -1,5 +1,7 @@
 # comp3111 Project - Group 15 - LHS
 
+## Team Members
+
 Member #1  - Li Chun Tak  
 Task assignment: INPUT  
 Sid: 20791241  
@@ -20,3 +22,6 @@ Sid: 20689113
 Email: wkszeaa@connect.ust.hk  
 Github ID: szeu  
 Branch ID: tree/output  
+
+## 113 (iii).
+This is the [link](https://github.com/a1347539/comp3111-G15/blob/main/Activity1.pdf) to related documentation.
