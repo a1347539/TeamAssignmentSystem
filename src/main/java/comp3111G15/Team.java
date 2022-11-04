@@ -1,16 +1,16 @@
 package comp3111G15;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Collections;
 
 public class Team {
 	private int team_id;
-	private ArrayList<Student> team_members;
+	private List<Student> team_members;
 	private Student recommendedLeader;
 	private double K1_average;
 	private double K2_average;
 	
-	public Team(int id, ArrayList<Student> members, int leader) {
+	public Team(int id, List<Student> members, int leader) {
 		this.team_id = id;
 		this.team_members = members;
 		this.recommendedLeader = this.team_members.get(leader);
@@ -44,7 +44,7 @@ public class Team {
 		return team_id;
 	}
 	
-	public ArrayList<Student> getMemberList(){
+	public List<Student> getMemberList(){
 		return team_members;
 	}
 	
