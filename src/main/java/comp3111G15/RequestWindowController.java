@@ -58,12 +58,12 @@ public class RequestWindowController {
     }
     
     @FXML
-    void onEnergyVewButtonPressed(ActionEvent event) {
+    private void onEnergyVewButtonPressed(ActionEvent event) {
     	createChartWindow();
     }
     
     @FXML
-    void onLoadCsvButtonPressed(ActionEvent event) {
+    private void onLoadCsvButtonPressed(ActionEvent event) {
     	String CSVfilename = filenameTextField.getText();
     	if (InputManager.read(CSVfilename)) {
     		
@@ -72,7 +72,7 @@ public class RequestWindowController {
     }
 
     @FXML
-    void onSubmitButtonPressed(ActionEvent event) {
+    private void onSubmitButtonPressed(ActionEvent event) {
     	if(verifyInput(requestTextField.getText().trim())) {
     		// TODO - search for team info
     		createTeamTableWindow();
@@ -85,16 +85,19 @@ public class RequestWindowController {
     	}
     }
     
-    boolean verifyInput(String input) {
+    private boolean verifyInput(String input) {
     	for(Student student : InputManager.student_data) {
     		if(student.getName().replaceAll(",", "").toLowerCase().equals(input.toLowerCase())
-    				|| student.getID().toLowerCase().equals(input.toLowerCase()))
+    				|| student.getID().toLowerCase().equals(input.toLowerCase())) {
+    			DisplayWindowController.searching_student = student;
     			return true;
+    		}
+    			
     	}
     	return false;
     }
     
-    void createChartWindow() {
+    private void createChartWindow() {
     	try {
 	    	FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("/lineChartUI.fxml"));
@@ -110,7 +113,7 @@ public class RequestWindowController {
     	}
     }
     
-    void createTeamTableWindow() {
+    private void createTeamTableWindow() {
     	try {
 	    	FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("/displayUI.fxml"));
