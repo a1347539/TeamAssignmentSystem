@@ -67,7 +67,7 @@ public class RequestWindowController {
     	String CSVfilename = filenameTextField.getText();
     	if (InputManager.read(CSVfilename)) {
     		
-    		createStatisticsTableWindow();
+    		statisticsTableSetup();
     	}
     }
 
@@ -129,7 +129,8 @@ public class RequestWindowController {
     	}
     }
     
-    private void createStatisticsTableWindow() {
+    private void statisticsTableSetup() {
+    	InputManager.getStatistics();
     	try {
 	    	FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("/statisticsTableUI.fxml"));
@@ -144,6 +145,5 @@ public class RequestWindowController {
     		e.printStackTrace();
     	}
     }
-
 }
 

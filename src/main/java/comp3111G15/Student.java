@@ -8,7 +8,7 @@ public class Student implements Comparable<Student> {
 	private int K2_energy;
 	private boolean K3_tick1;
 	private boolean K3_tick2;
-	private String my_preference;
+	private boolean my_preference;
 	private String concerns;
 	
 	public Student(String student_id, String student_name,  String email, String k1_energy, String k2_energy, String k3_trick1,
@@ -20,7 +20,7 @@ public class Student implements Comparable<Student> {
 		this.K2_energy = Integer.parseInt(k2_energy);
 		this.K3_tick1 = Integer.parseInt(k3_trick1) == 1;
 		this.K3_tick2 = Integer.parseInt(k3_trick2) == 1;
-		this.my_preference = my_preference;
+		this.my_preference = Integer.parseInt(k3_trick2) == 1;
 		this.concerns = concerns;
 	}
 	
@@ -61,7 +61,7 @@ public class Student implements Comparable<Student> {
 		return K3_tick2;
 	}
 	
-	public String getPreference() {
+	public boolean getPreference() {
 		return my_preference;
 	}
 	

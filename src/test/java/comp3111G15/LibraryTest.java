@@ -4,20 +4,29 @@
 package comp3111G15;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
 public class LibraryTest {
 	
+	ArrayList<Student> student_data;
 	Student student1;
 	Student student2;
 	Student student3;
 	
 	@Before
 	public void setUp() throws Exception {
-		student1 = new Student("SAFFRON, Corgipoo", "20004488", "CorgipooSAF@connect.ust.hk", "26", "80", "0", "1", "0", "");
-		student2 = new Student("HYSSOP, Chamois", "20023331", "ChamoisHYS@connect.ust.hk", "27", "85", "0", "0", "0", "");
-		student3 = new Student("CHRYSANTHEMUM, Abelisaurus", "20067232", "AbelisaurusCHR@connect.ust.hk", "57", "60", "0", "0", "0", "");
+		student_data = new ArrayList<Student>();
+		student1 = new Student("20004488", "SAFFRON, Corgipoo", "CorgipooSAF@connect.ust.hk", "26", "80", "0", "1", "0", "");
+		student2 = new Student("20023331", "HYSSOP, Chamois", "ChamoisHYS@connect.ust.hk", "27", "85", "0", "0", "0", "");
+		student3 = new Student("20067232", "CHRYSANTHEMUM, Abelisaurus", "AbelisaurusCHR@connect.ust.hk", "57", "60", "0", "0", "0", "");
+		student_data.add(student1);
+		student_data.add(student2);
+		student_data.add(student3);
+
 	}
 
 	@Test
@@ -68,5 +77,33 @@ public class LibraryTest {
 	@Test
 	public void isStudentK3Tick2ReturnTrue() {
 		assertTrue(student1.getK3Tick2());
+	}
+	
+	@Test
+	public void isK1MMMEqual() {
+		assertEquals("(36.7, 26, 57)", InputManager.get_student_k2_mmm(student_data));
+	}
+
+	@Test
+	public void isK2MMMEqual() {
+		assertEquals("(75.0, 60, 85)", InputManager.get_student_k2_mmm(student_data));
+	}
+	
+	@Test
+	public void isK3_tick1Equal() {
+		String t = InputManager.get_k3_ticks(student_data)[0];
+		assertEquals("0", t);
+	}
+	
+	@Test
+	public void isK3_tick2Equal() {
+		String t = InputManager.get_k3_ticks(student_data)[1];
+		assertEquals("1", t);
+	}
+	
+	@Test
+	public void isMyPrefEqual() {
+		String t = InputManager.get_k3_ticks(student_data)[0];
+		assertEquals("0", t);
 	}
 }
