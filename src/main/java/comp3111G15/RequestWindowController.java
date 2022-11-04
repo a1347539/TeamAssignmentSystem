@@ -85,8 +85,11 @@ public class RequestWindowController {
     private boolean verifyInput(String input) {
     	for(Student student : InputManager.student_data) {
     		if(student.getName().replaceAll(",", "").toLowerCase().equals(input.toLowerCase())
-    				|| student.getID().toLowerCase().equals(input.toLowerCase()))
+    				|| student.getID().toLowerCase().equals(input.toLowerCase())) {
+    			DisplayWindowController.searching_student = student;
     			return true;
+    		}
+    			
     	}
     	return false;
     }
