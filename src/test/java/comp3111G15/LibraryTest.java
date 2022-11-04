@@ -3,12 +3,70 @@
  */
 package comp3111G15;
 
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
 
 public class LibraryTest {
-    @Test public void testSomeLibraryMethod() {
-        Library_sample classUnderTest = new Library_sample();
-        assertTrue("someLibraryMethod should return 'true'", classUnderTest.someLibraryMethod());
-    }
+	
+	Student student1;
+	Student student2;
+	Student student3;
+	
+	@Before
+	public void setUp() throws Exception {
+		student1 = new Student("SAFFRON, Corgipoo", "20004488", "CorgipooSAF@connect.ust.hk", "26", "80", "0", "1", "0", "");
+		student2 = new Student("HYSSOP, Chamois", "20023331", "ChamoisHYS@connect.ust.hk", "27", "85", "0", "0", "0", "");
+		student3 = new Student("CHRYSANTHEMUM, Abelisaurus", "20067232", "AbelisaurusCHR@connect.ust.hk", "57", "60", "0", "0", "0", "");
+	}
+
+	@Test
+	public void isStudentNameEqual() {
+		assertEquals("SAFFRON, Corgipoo", student1.getName());
+	}
+	
+	@Test
+	public void isStudentIDEqual() {
+		assertEquals("20004488", student1.getID());
+	}
+	
+	@Test
+	public void isStudentEmailEqual() {
+		assertEquals("CorgipooSAF@connect.ust.hk", student1.getEmail());
+	}
+	
+	@Test
+	public void isStudentK1Equal() {
+		assertEquals(26, student1.getK1Energy());
+	}
+	
+	@Test
+	public void isStudentK2Equal() {
+		assertEquals(80, student1.getK2Energy());
+	}
+	
+	@Test
+	public void isStudentK1Larger() {
+		assertEquals(-1, student2.compareTo(student1));
+	}
+	
+	@Test
+	public void isStudentK1Smaller() {
+		assertEquals(1, student2.compareTo(student3));
+	}
+	
+	@Test
+	public void isStudentK1CompareEqual() {
+		assertEquals(0, student2.compareTo(student2));
+	}
+	
+	@Test
+	public void isStudentK3Tick1ReturnFalse() {
+		assertFalse(student1.getK3Tick1());
+	}
+	
+	@Test
+	public void isStudentK3Tick2ReturnTrue() {
+		assertTrue(student1.getK3Tick2());
+	}
 }
