@@ -8,6 +8,9 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 
 public class DisplayWindowController {
+	
+	static Student searching_student;
+	static Team belonging_team;
 
     @FXML
     private TableColumn<?, ?> energy_content_column;
