@@ -2,12 +2,12 @@ package comp3111G15;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class Statistic {
+public class Statistics {
 
 	private final SimpleStringProperty entry;
 	private final SimpleStringProperty value;
 
-	private Statistic(String fName, String lName) {
+	public Statistics(String fName, String lName) {
 		this.entry = new SimpleStringProperty(fName);
 		this.value = new SimpleStringProperty(lName);
 	}
