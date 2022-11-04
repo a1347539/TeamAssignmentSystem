@@ -22,14 +22,14 @@ import javafx.stage.Stage;
 
 public class Library_sample extends Application {
 	
-	private TableView<Statistics> stat_table = new TableView<Statistics>();
+	private TableView<_Statistics> stat_table = new TableView<_Statistics>();
 	private TableView<Person> person_table = new TableView<Person>();
 
-	private final ObservableList<Statistics> stat_data = FXCollections.observableArrayList(
-			new Statistics("Total Number of Students", "100"),
-			new Statistics("K1_Energy(Average, Min, Max)", "(59.8, 10, 80)"),
-			new Statistics("K2_Energy(Average, Min, Max)", "(62.3, 40, 85)"), new Statistics("K3_Tick1 = 1", "12"),
-			new Statistics("K3_Tick2 = 1", "3"), new Statistics("My_Preference = 1", "19"));
+	private final ObservableList<_Statistics> stat_data = FXCollections.observableArrayList(
+			new _Statistics("Total Number of Students", "100"),
+			new _Statistics("K1_Energy(Average, Min, Max)", "(59.8, 10, 80)"),
+			new _Statistics("K2_Energy(Average, Min, Max)", "(62.3, 40, 85)"), new _Statistics("K3_Tick1 = 1", "12"),
+			new _Statistics("K3_Tick2 = 1", "3"), new _Statistics("My_Preference = 1", "19"));
 
 	private final static ObservableList<Person> person_data = FXCollections.observableArrayList();
 
@@ -57,11 +57,11 @@ public class Library_sample extends Application {
 
 		TableColumn entry_column = new TableColumn("Entry");
 		entry_column.setMinWidth(100);
-		entry_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("entry"));
+		entry_column.setCellValueFactory(new PropertyValueFactory<_Statistics, String>("entry"));
 
 		TableColumn value_column = new TableColumn("Value");
 		value_column.setMinWidth(100);
-		value_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("value"));
+		value_column.setCellValueFactory(new PropertyValueFactory<_Statistics, String>("value"));
 
 		stat_table.setItems(stat_data);
 		stat_table.getColumns().addAll(entry_column, value_column);
@@ -89,35 +89,35 @@ public class Library_sample extends Application {
 
 		TableColumn studentid_column = new TableColumn("Student_ID");
 		studentid_column.setMinWidth(100);
-		studentid_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("studentid"));
+		studentid_column.setCellValueFactory(new PropertyValueFactory<_Statistics, String>("studentid"));
 
 		TableColumn studentname_column = new TableColumn("Student_Name");
 		studentname_column.setMinWidth(100);
-		studentname_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("studentname"));
+		studentname_column.setCellValueFactory(new PropertyValueFactory<_Statistics, String>("studentname"));
 
 		TableColumn k1energy_column = new TableColumn("K1_Energy");
 		k1energy_column.setMinWidth(100);
-		k1energy_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("k1energy"));
+		k1energy_column.setCellValueFactory(new PropertyValueFactory<_Statistics, String>("k1energy"));
 
 		TableColumn k2energy_column = new TableColumn("k2_Energy");
 		k2energy_column.setMinWidth(100);
-		k2energy_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("k2energy"));
+		k2energy_column.setCellValueFactory(new PropertyValueFactory<_Statistics, String>("k2energy"));
 
 		TableColumn k3trick1_column = new TableColumn("K3_Trick1");
 		k3trick1_column.setMinWidth(100);
-		k3trick1_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("k3trick1"));
+		k3trick1_column.setCellValueFactory(new PropertyValueFactory<_Statistics, String>("k3trick1"));
 
 		TableColumn k3trick2_column = new TableColumn("K3_Trick2");
 		k3trick2_column.setMinWidth(100);
-		k3trick2_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("k3trick2"));
+		k3trick2_column.setCellValueFactory(new PropertyValueFactory<_Statistics, String>("k3trick2"));
 
 		TableColumn mypreference_column = new TableColumn("My_Preference");
 		mypreference_column.setMinWidth(100);
-		mypreference_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("mypreference"));
+		mypreference_column.setCellValueFactory(new PropertyValueFactory<_Statistics, String>("mypreference"));
 
 		TableColumn concerns_column = new TableColumn("Concerns");
 		concerns_column.setMinWidth(100);
-		concerns_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("concerns"));
+		concerns_column.setCellValueFactory(new PropertyValueFactory<_Statistics, String>("concerns"));
 
 		person_table.setItems(person_data);
 		person_table.getColumns().addAll(studentid_column, studentname_column, k1energy_column, k2energy_column,
@@ -155,12 +155,12 @@ public class Library_sample extends Application {
 		}
 	}
 
-	public static class Statistics {
+	public static class _Statistics {
 
 		private final SimpleStringProperty entry;
 		private final SimpleStringProperty value;
 
-		private Statistics(String fName, String lName) {
+		private _Statistics(String fName, String lName) {
 			this.entry = new SimpleStringProperty(fName);
 			this.value = new SimpleStringProperty(lName);
 		}

@@ -8,10 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -68,10 +66,17 @@ public class RequestWindowController {
     @FXML
     private void onLoadCsvButtonPressed(ActionEvent event) {
     	String CSVfilename = filenameTextField.getText();
+    	
     	// Set search and line chart button enabled when file is successfully loaded
-    	boolean HasLoaded = InputManager.read(CSVfilename);
-    	submitButton.setDisable(!HasLoaded);
-    	energyViewButton.setDisable(!HasLoaded);
+    	if (InputManager.read(CSVfilename)) {
+    		submitButton.setDisable(true);
+        	energyViewButton.setDisable(true);
+    		statisticsTableSetup();
+    	}
+    	else {
+    		submitButton.setDisable(false);
+        	energyViewButton.setDisable(false);
+    	}
     }
 
     @FXML
@@ -150,6 +155,23 @@ public class RequestWindowController {
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.setTitle("Search Result");
+			stage.show();
+    	}
+    	catch (IOException e) {
+    		e.printStackTrace();
+    	}
+    }
+
+    private void statisticsTableSetup() {
+    	InputManager.getStatistics();
+    	try {
+	    	FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/statisticsTableUI.fxml"));
+			Stage stage = new Stage();
+			VBox root = (VBox) loader.load();
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.setTitle("Table of students' personal data");
 			stage.show();
     	}
     	catch (IOException e) {
