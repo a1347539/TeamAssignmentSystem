@@ -55,6 +55,9 @@ public class RequestWindowController {
     		System.out.println("you are a TA");
     		TA_Area.setVisible(true);
     	}
+    	// Set search and line chart button to disabled
+    	submitButton.setDisable(true);
+    	energyViewButton.setDisable(true);
     }
     
     @FXML
@@ -65,27 +68,55 @@ public class RequestWindowController {
     @FXML
     private void onLoadCsvButtonPressed(ActionEvent event) {
     	String CSVfilename = filenameTextField.getText();
-    	InputManager.read(CSVfilename);
+    	// Set search and line chart button enabled when file is successfully loaded
+    	boolean HasLoaded = InputManager.read(CSVfilename);
+    	submitButton.setDisable(!HasLoaded);
+    	energyViewButton.setDisable(!HasLoaded);
     }
 
     @FXML
     private void onSubmitButtonPressed(ActionEvent event) {
+    	// Verify user input
     	if(verifyInput(requestTextField.getText().trim())) {
-    		// TODO - search for team info
-    		createTeamTableWindow();
+    		// Search for team info for that student
+    		if(searchForTeam(DisplayWindowController.searching_student)) {
+    			createTeamTableWindow();
+    		}
+    		else {
+    			// When that student info is in the system but is not assigned to any team
+    			Alert alert = new Alert(Alert.AlertType.ERROR);
+        		alert.setTitle("Error");
+        		alert.setContentText("Oops. No team is assgined for this student.");
+        		alert.showAndWait();
+    		}
     	}
+    	// When user has entered something but invalid
     	else if(requestTextField.getText().trim().length() > 0) {
-    		Alert alert = new Alert(Alert.AlertType.ERROR);
+    		Alert alert = new Alert(Alert.AlertType.WARNING);
     		alert.setTitle("Invalid Input");
     		alert.setContentText("Incorrect student name or ID. Please try again.");
     		alert.showAndWait();
     	}
     }
     
+	private boolean searchForTeam(Student student) {
+		for(Team team : tester.teams) {
+			for(Student s : team.getMemberList()) {
+				if(s.equals(student)) {
+					// Identify the team for that searching student
+					DisplayWindowController.belonging_team = team;
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+    
     private boolean verifyInput(String input) {
     	for(Student student : InputManager.student_data) {
     		if(student.getName().replaceAll(",", "").toLowerCase().equals(input.toLowerCase())
     				|| student.getID().toLowerCase().equals(input.toLowerCase())) {
+    			// Identify the searching student
     			DisplayWindowController.searching_student = student;
     			return true;
     		}
@@ -125,6 +156,5 @@ public class RequestWindowController {
     		e.printStackTrace();
     	}
     }
-
 }
 
