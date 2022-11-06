@@ -1,71 +1,130 @@
 package comp3111G15;
 
+import javafx.beans.property.SimpleStringProperty;
+
 public class Student implements Comparable<Student> {
-	private String student_name;
-	private String student_id;
-	private String student_email;
-	private int K1_energy;
-	private int K2_energy;
-	private boolean K3_tick1;
-	private boolean K3_tick2;
-	private boolean my_preference;
-	private String concerns;
+	private final SimpleStringProperty index;
+	private final SimpleStringProperty studentID;
+	private final SimpleStringProperty studentName;
+	private final SimpleStringProperty k1Energy;
+	private final SimpleStringProperty k2Energy;
+	private final SimpleStringProperty k3Tick1;
+	private final SimpleStringProperty k3Tick2;
+	private final SimpleStringProperty myPreference;
+	private final SimpleStringProperty concerns;
 	
-	public Student(String student_id, String student_name,  String email, String k1_energy, String k2_energy, String k3_trick1,
-			String k3_trick2, String my_preference, String concerns) {
-		this.student_id = student_id;
-		this.student_name = student_name;
-		this.student_email = email;
-		this.K1_energy = Integer.parseInt(k1_energy);
-		this.K2_energy = Integer.parseInt(k2_energy);
-		this.K3_tick1 = Integer.parseInt(k3_trick1) == 1;
-		this.K3_tick2 = Integer.parseInt(k3_trick2) == 1;
-		this.my_preference = Integer.parseInt(k3_trick2) == 1;
-		this.concerns = concerns;
+	public Student(int index, String student_id, String student_name,  String email, String k1_energy, String k2_energy, String k3_tick1,
+			String k3_tick2, String my_preference, String concerns) {
+		this.index = new SimpleStringProperty(Integer.toString(index));
+		this.studentID = new SimpleStringProperty(student_id);
+		this.studentName = new SimpleStringProperty(student_name);
+		this.k1Energy = new SimpleStringProperty(k1_energy);
+		this.k2Energy = new SimpleStringProperty(k2_energy);
+		this.k3Tick1 = new SimpleStringProperty(k3_tick1);
+		this.k3Tick2 = new SimpleStringProperty(k3_tick2);
+		this.myPreference = new SimpleStringProperty("1");
+		this.concerns = new SimpleStringProperty(concerns);
 	}
 	
 	@Override
-	public int compareTo(Student o) {
-		if(this.K1_energy < o.K1_energy)
+	public int compareTo(Student other) {
+		int myK1 = Integer.parseInt(this.getK1Energy());
+		int otherK1 = Integer.parseInt(other.getK1Energy());
+		if(myK1 < otherK1)
 			return 1;
-		else if(this.K1_energy == o.K1_energy)
+		else if(myK1 == otherK1)
 			return 0;
 		else return -1;
 	}
+	
 
-	public String getName() {
-		return student_name;
+	
+	public int getK1Energy_int() {
+		return Integer.parseInt(k1Energy.get());
 	}
 	
-	public String getID() {
-		return student_id;
+	public int getK2Energy_int() {
+		return Integer.parseInt(k2Energy.get());
 	}
 	
-	public String getEmail() {
-		return student_email;
+	public boolean getK3Tick1_bool() {
+		return Integer.parseInt(k3Tick1.get()) == 1;
 	}
 	
-	public int getK1Energy() {
-		return K1_energy;
+	public boolean getK3Tick2_bool() {
+		return Integer.parseInt(k3Tick2.get()) == 1;
 	}
 	
-	public int getK2Energy() {
-		return K2_energy;
+	
+	public String getIndex() {
+		return index.get();
+	}
+
+	public void setIndex(String val) {
+		index.set(val);
 	}
 	
-	public boolean getK3Tick1() {
-		return K3_tick1;
+	public String getStudentID() {
+		return studentID.get();
 	}
-	
-	public boolean getK3Tick2() {
-		return K3_tick2;
+
+	public void setStudentID(String val) {
+		studentID.set(val);
 	}
-	
-	public boolean getPreference() {
-		return my_preference;
+
+	public String getStudentName() {
+		return studentName.get();
 	}
-	
+
+	public void setStudentName(String val) {
+		studentName.set(val);
+	}
+
+	public String getK1Energy() {
+		return k1Energy.get();
+	}
+
+	public void setK1Energy(String val) {
+		k1Energy.set(val);
+	}
+
+	public String getK2Energy() {
+		return k2Energy.get();
+	}
+
+	public void setK2Energy(String val) {
+		k2Energy.set(val);
+	}
+
+	public String getK3Tick1() {
+		return k3Tick1.get();
+	}
+
+	public void setK3Tick1(String val) {
+		k3Tick1.set(val);
+	}
+
+	public String getK3Tick2() {
+		return k3Tick2.get();
+	}
+
+	public void setK3Tick2(String val) {
+		k3Tick2.set(val);
+	}
+
+	public String getMyPreference() {
+		return myPreference.get();
+	}
+
+	public void setMyPreference(String val) {
+		myPreference.set(val);
+	}
+
 	public String getConcerns() {
-		return concerns;
+		return concerns.get();
+	}
+
+	public void setConcerns(String val) {
+		concerns.set(val);
 	}
 }

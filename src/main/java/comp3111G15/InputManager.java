@@ -20,25 +20,27 @@ public class InputManager {
 	
 	public final static ObservableList<Student> student_data = FXCollections.observableArrayList();
 	
-	public static String get_student_k1_mmm(List<Student> student_data) {
-		float mean = student_data.get(0).getK1Energy() + student_data.get(1).getK1Energy();
-		int max = 0;
+	public static String[] get_student_k1_mmm(List<Student> student_data) {
+		int student0K1Energy = Integer.parseInt(student_data.get(0).getK1Energy());
+		int student1K1Energy = Integer.parseInt(student_data.get(1).getK1Energy());
+		float mean = student0K1Energy + student1K1Energy;
 		int min = 0;
+		int max = 0;
 
-		if (student_data.get(0).getK1Energy() > student_data.get(1).getK1Energy())
+		if (student0K1Energy > student1K1Energy)
 	    {
-	        max = student_data.get(0).getK1Energy();
-	        min = student_data.get(1).getK1Energy();
+	        max = student0K1Energy;
+	        min = student1K1Energy;
 	    }
 	    else
 	    {
-	    	max = student_data.get(1).getK1Energy();
-	        min = student_data.get(0).getK1Energy();
+	    	max = student1K1Energy;
+	        min = student0K1Energy;
 	    }
 		
 		for (int i = 2; i < student_data.size(); ++i)
 	    {
-			int k1 = student_data.get(i).getK1Energy();
+			int k1 = Integer.parseInt(student_data.get(i).getK1Energy());
 			mean += k1;
 	        if (k1 > max)    
 	            max = k1;
@@ -47,29 +49,30 @@ public class InputManager {
 	            min = k1;
 	    }
 		mean /= student_data.size();
-		
-	    return String.format("(%.1f, %d, %d)", mean, min, max);
+		return new String[] { String.format("%.1f", mean), String.format("%d", min),  String.format("%d", max) };
 	}
 	
-	public static String get_student_k2_mmm(List<Student> student_data) {
-		float mean = student_data.get(0).getK2Energy() + student_data.get(1).getK2Energy();
-		int max = 0;
+	public static String[] get_student_k2_mmm(List<Student> student_data) {
+		int student0K2Energy = Integer.parseInt(student_data.get(0).getK2Energy());
+		int student1K2Energy = Integer.parseInt(student_data.get(1).getK2Energy());
+		float mean = student0K2Energy + student1K2Energy;
 		int min = 0;
+		int max = 0;
 
-		if (student_data.get(0).getK2Energy() > student_data.get(1).getK2Energy())
+		if (student0K2Energy > student1K2Energy)
 	    {
-	        max = student_data.get(0).getK2Energy();
-	        min = student_data.get(1).getK2Energy();
+	        max = student0K2Energy;
+	        min = student1K2Energy;
 	    }
 	    else
 	    {
-	    	max = student_data.get(1).getK2Energy();
-	        min = student_data.get(0).getK2Energy();
+	    	max = student1K2Energy;
+	        min = student0K2Energy;
 	    }
 		
 		for (int i = 2; i < student_data.size(); ++i)
 	    {
-			int k2 = student_data.get(i).getK2Energy();
+			int k2 = Integer.parseInt(student_data.get(i).getK2Energy());
 			mean += k2;
 	        if (k2 > max)    
 	            max = k2;
@@ -78,8 +81,7 @@ public class InputManager {
 	            min = k2;
 	    }
 		mean /= student_data.size();
-		
-	    return String.format("(%.1f, %d, %d)", mean, min, max);
+		return new String[] { String.format("%.1f", mean), String.format("%d", min),  String.format("%d", max) };
 	}
 	
 	public static String[] get_k3_ticks(List<Student> student_data) {
@@ -88,13 +90,13 @@ public class InputManager {
 		int my_preference = 0;
 		
 		for (int i = 0; i < student_data.size(); ++i) {
-			if (student_data.get(i).getK3Tick1() == true) {
+			if (Integer.parseInt(student_data.get(i).getK3Tick1()) == 1) {
 				++tick1_count;
 			}
-			if (student_data.get(i).getK3Tick2() == true) {
+			if (Integer.parseInt(student_data.get(i).getK3Tick2()) == 1) {
 				++tick2_count;
 			}
-			if (student_data.get(i).getPreference() == true) {
+			if (Integer.parseInt(student_data.get(i).getMyPreference()) == 1) {
 				++my_preference;
 			}
 		}
@@ -125,17 +127,16 @@ public class InputManager {
 			String line = " ";
 			String[] tempArr;
 			br.readLine(); // skip the first line
+			int index = 0;
 			while ((line = br.readLine()) != null) {
 				tempArr = line.split(delimiter);
-				
 				student_data.add( 
-						new Student( 
+						new Student( index++,
 								tempArr[0], tempArr[1].concat(tempArr[2]), tempArr[3],
 								tempArr[4], tempArr[5], tempArr[6], 
 								tempArr[7], tempArr[8], tempArr[9]
 								)
 						);
-				 
 			}
 			br.close();
 			
@@ -160,8 +161,10 @@ public class InputManager {
 			System.out.println(a);
 		}
 		stat_data.add(new Statistics(0, "Total Number of Students", Integer.toString(student_data.size())));
-		stat_data.add(new Statistics(1, "K1_Energy(Average, Min, Max)", get_student_k1_mmm(student_data)));
-		stat_data.add(new Statistics(2, "K2_Energy(Average, Min, Max)", get_student_k2_mmm(student_data)));
+		String[] k1s = get_student_k1_mmm(student_data);
+		stat_data.add(new Statistics(1, "K1_Energy(Average, Min, Max)", String.format("(%s, %s, %s)", k1s[0], k1s[1], k1s[2])));
+		String[] k2s = get_student_k2_mmm(student_data);
+		stat_data.add(new Statistics(2, "K2_Energy(Average, Min, Max)", String.format("(%s, %s, %s)", k2s[0], k2s[1], k2s[2])));
 		String[] t = get_k3_ticks(student_data);
 		stat_data.add(new Statistics(3, "K3_Tick1 = 1", t[0]));
 		stat_data.add(new Statistics(4, "K3_Tick2 = 1", t[1]));
