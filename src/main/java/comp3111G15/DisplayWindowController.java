@@ -5,8 +5,6 @@ import java.util.ResourceBundle;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -14,7 +12,6 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.control.TreeTableView;
-import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.util.Callback;
 
 public class DisplayWindowController implements Initializable {
@@ -97,9 +94,11 @@ public class DisplayWindowController implements Initializable {
 		K1_average.setText(String.format("%.1f", belonging_team.getK1Average()));
 		K2_average.setText(String.format("%.1f", belonging_team.getK2Average()));
 		
+		// Set up root item for tree table and get student data from team
 		TreeItem<TableDisplay> root = new TreeItem<>(new TableDisplay("My Teammates", "", ""));
 		initTableData(root);
 		
+		// Set up column property for each column
 		title_column.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<TableDisplay, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<TableDisplay, String> param) {
@@ -124,17 +123,35 @@ public class DisplayWindowController implements Initializable {
 			
 		});
 		
+		// Initialize tree table with the root item
 		teammates_table.setRoot(root);
 		teammates_table.setShowRoot(false);
 	}
 	
 	private void initTableData(TreeItem<TableDisplay> root) {
 		for(Student student : belonging_team.getMemberList()) {
+			// Only show teammate but not the self
 			if(student.equals(searching_student)) continue;
-			TreeItem<TableDisplay> temp_student = new TreeItem<>(new TableDisplay(student.getStudentName(), "", ""));
 			
-			TreeItem<TableDisplay> temp_email = new TreeItem<>(new TableDisplay("Contact:", student.getStudentEmail(), ""));
-			temp_student.getChildren().add(temp_email);
+			// Initialize teammate
+			TreeItem<TableDisplay> temp_student;
+			if(student.equals(belonging_team.getLeader()))
+				temp_student = new TreeItem<>(new TableDisplay(student.getStudentName(), "", "√"));
+			else
+				temp_student = new TreeItem<>(new TableDisplay(student.getStudentName(), "", ""));
+			
+			// Add info to teammate
+			TreeItem<TableDisplay> temp_id = new TreeItem<>(new TableDisplay("Student ID:", student.getStudentID(), ""));
+			TreeItem<TableDisplay> temp_email = new TreeItem<>(new TableDisplay("Email:", student.getStudentEmail(), ""));
+			TreeItem<TableDisplay> temp_K1 = new TreeItem<>(new TableDisplay("K1 Energy:", student.getK1Energy(), ""));
+			TreeItem<TableDisplay> temp_K2 = new TreeItem<>(new TableDisplay("K2 Energy:", student.getK2Energy(), ""));
+			TreeItem<TableDisplay> temp_K3_1 = new TreeItem<>(new TableDisplay("K3 Tick 1:", student.getK3Tick1(), ""));
+			TreeItem<TableDisplay> temp_K3_2 = new TreeItem<>(new TableDisplay("K3 Tick 2:", student.getK3Tick2(), ""));
+			TreeItem<TableDisplay> temp_pref = new TreeItem<>(new TableDisplay("Preference:", student.getMyPreference(), ""));
+			TreeItem<TableDisplay> temp_concern = new TreeItem<>(new TableDisplay("Concerns:", student.getConcerns(), ""));
+			
+			temp_student.getChildren().addAll(temp_id, temp_email, temp_K1, temp_K2, temp_K3_1, temp_K3_2, temp_pref, temp_concern);
+			temp_student.setExpanded(true);
 			
 			root.getChildren().add(temp_student);
 		}
