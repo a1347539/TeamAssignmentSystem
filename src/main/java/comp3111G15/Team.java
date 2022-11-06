@@ -22,7 +22,7 @@ public class Team {
 		double average = 0;
 		
 		for(int i = 0; i < team_members.size(); i++) {
-			average += team_members.get(i).getK1Energy();
+			average += Integer.parseInt(team_members.get(i).getK1Energy());
 		}
 		return average /= team_members.size();
 	}
@@ -31,7 +31,7 @@ public class Team {
 		double average = 0;
 		
 		for(int i = 0; i < team_members.size(); i++) {
-			average += team_members.get(i).getK2Energy();
+			average += Integer.parseInt(team_members.get(i).getK2Energy());
 		}
 		return average /= team_members.size();
 	}

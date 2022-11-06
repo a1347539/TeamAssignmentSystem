@@ -47,11 +47,11 @@ public class EnergyChartViewController implements Initializable {
 	
 	private void initK1SeriesData(XYChart.Series<Integer, Integer> series, List<Student> students) {
 		for(int i = 0; i < students.size(); i++)
-			series.getData().add(new XYChart.Data<Integer, Integer>(i+1, students.get(i).getK1Energy()));
+			series.getData().add(new XYChart.Data<Integer, Integer>(i+1, Integer.parseInt(students.get(i).getK1Energy())));
 	}
 
 	private void initK2SeriesData(XYChart.Series<Integer, Integer> series, List<Student> students) {
 		for(int i = 0; i < students.size(); i++)
-			series.getData().add(new XYChart.Data<Integer, Integer>(i+1, students.get(i).getK2Energy()));
+			series.getData().add(new XYChart.Data<Integer, Integer>(i+1, Integer.parseInt(students.get(i).getK2Energy())));
 	}
 }

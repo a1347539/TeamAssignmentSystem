@@ -20,11 +20,11 @@ public class LibraryTest {
 	@Before
 	public void setUp() throws Exception {
 		student_data = new ArrayList<Student>();
-		student1 = new Student("20004488", "SAFFRON, Corgipoo", "CorgipooSAF@connect.ust.hk", 
+		student1 = new Student(0, "20004488", "SAFFRON, Corgipoo", "CorgipooSAF@connect.ust.hk", 
 				"26", "80", "0", "1", "0", "");
-		student2 = new Student("20023331", "HYSSOP, Chamois", "ChamoisHYS@connect.ust.hk", 
+		student2 = new Student(1, "20023331", "HYSSOP, Chamois", "ChamoisHYS@connect.ust.hk", 
 				"27", "85", "0", "1", "1", "");
-		student3 = new Student("20067232", "CHRYSANTHEMUM, Abelisaurus", "AbelisaurusCHR@connect.ust.hk", 
+		student3 = new Student(2, "20067232", "CHRYSANTHEMUM, Abelisaurus", "AbelisaurusCHR@connect.ust.hk", 
 				"57", "60", "1", "0", "1", "");
 		student_data.add(student1);
 		student_data.add(student2);
@@ -34,17 +34,17 @@ public class LibraryTest {
 	
 	@Test
 	public void isStudentNameEqual() {
-		assertEquals("SAFFRON, Corgipoo", student1.getName());
+		assertEquals("SAFFRON, Corgipoo", student1.getStudentName());
 	}
 	
 	@Test
 	public void isStudentIDEqual() {
-		assertEquals("20004488", student1.getID());
+		assertEquals("20004488", student1.getStudentID());
 	}
 	
 	@Test
 	public void isStudentEmailEqual() {
-		assertEquals("CorgipooSAF@connect.ust.hk", student1.getEmail());
+		assertEquals("CorgipooSAF@connect.ust.hk", student1.getStudentEmail());
 	}
 	
 	@Test
@@ -74,12 +74,12 @@ public class LibraryTest {
 	
 	@Test
 	public void isStudentK3Tick1ReturnFalse() {
-		assertFalse(student1.getK3Tick1());
+		assertFalse(Integer.parseInt(student1.getK3Tick1()) == 1);
 	}
 	
 	@Test
 	public void isStudentK3Tick2ReturnTrue() {
-		assertTrue(student1.getK3Tick2());
+		assertTrue(Integer.parseInt(student1.getK3Tick2()) == 1);
 	}
 
 	@Test

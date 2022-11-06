@@ -47,8 +47,8 @@ public class DisplayWindowController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// Initialize student info
-		searching_name.setText(searching_student.getName());
-		searching_id.setText(searching_student.getID());
+		searching_name.setText(searching_student.getStudentName());
+		searching_id.setText(searching_student.getStudentID());
 		
 		// Initialize team number and average energy
 		team_number.setText(Integer.toString(belonging_team.getID()));

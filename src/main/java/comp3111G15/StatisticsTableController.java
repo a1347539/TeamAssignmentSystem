@@ -23,11 +23,10 @@ public class StatisticsTableController {
 
     @FXML
     protected void initialize() {
-    	stat_table.setEditable(true);
+    	InputManager.getStatistics();
     	row_index_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("index"));
     	entry_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("entry"));
     	value_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("value"));
     	stat_table.setItems(InputManager.stat_data);
-    	stat_table.getColumns().addAll(row_index_column, entry_column, value_column);
     }
 }

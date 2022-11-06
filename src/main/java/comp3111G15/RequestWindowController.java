@@ -43,19 +43,22 @@ public class RequestWindowController {
     public void initialize() {
     	TextInputDialog td = new TextInputDialog();
     	td.setHeaderText("Enter TA pw, empty for students");
-    	td.showAndWait();
+    	// td.showAndWait();
+    	// Set search and line chart button to disabled
+    	
+    	submitButton.setDisable(true);
+    	energyViewButton.setDisable(true);
     	user_level = Security.checkPW(td.getEditor().getText());
+    	user_level = 1;
     	if (user_level == 0) {
     		TA_Area.setVisible(false);
     		// pretend the student data is pre-loaded
-        	InputManager.read("StudentData.CSV");
+        	submitButton.setDisable(!InputManager.read("StudentData.CSV"));
     	} else {
     		System.out.println("you are a TA");
     		TA_Area.setVisible(true);
     	}
-    	// Set search and line chart button to disabled
-    	submitButton.setDisable(true);
-    	energyViewButton.setDisable(true);
+    	
     }
     
     @FXML
@@ -69,13 +72,10 @@ public class RequestWindowController {
     	
     	// Set search and line chart button enabled when file is successfully loaded
     	if (InputManager.read(CSVfilename)) {
-    		submitButton.setDisable(true);
-        	energyViewButton.setDisable(true);
-    		statisticsTableSetup();
-    	}
-    	else {
     		submitButton.setDisable(false);
         	energyViewButton.setDisable(false);
+        	statisticsTableSetup();
+        	studentTableSetup();
     	}
     }
 
@@ -119,8 +119,8 @@ public class RequestWindowController {
     
     private boolean verifyInput(String input) {
     	for(Student student : InputManager.student_data) {
-    		if(student.getName().replaceAll(",", "").toLowerCase().equals(input.toLowerCase())
-    				|| student.getID().toLowerCase().equals(input.toLowerCase())) {
+    		if(student.getStudentName().replaceAll(",", "").toLowerCase().equals(input.toLowerCase())
+    				|| student.getStudentID().toLowerCase().equals(input.toLowerCase())) {
     			// Identify the searching student
     			DisplayWindowController.searching_student = student;
     			return true;
@@ -163,10 +163,25 @@ public class RequestWindowController {
     }
 
     private void statisticsTableSetup() {
-    	InputManager.getStatistics();
     	try {
 	    	FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("/statisticsTableUI.fxml"));
+			Stage stage = new Stage();
+			VBox root = (VBox) loader.load();
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.setTitle("Table of statistics");
+			stage.show();
+    	}
+    	catch (IOException e) {
+    		e.printStackTrace();
+    	}
+    }
+    
+    private void studentTableSetup() {
+    	try {
+	    	FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/studentTableUI.fxml"));
 			Stage stage = new Stage();
 			VBox root = (VBox) loader.load();
 			Scene scene = new Scene(root);

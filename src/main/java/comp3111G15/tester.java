@@ -13,7 +13,7 @@ public class tester {
 	
 	public static void main(String[] args) throws Exception {
 
-		String csvFile = "Sample Student Data File.CSV";
+		String csvFile = "StudentData.CSV";
 		File file = new File(csvFile);
 		System.out.println(file.getAbsolutePath());
 		if(file.canRead())
