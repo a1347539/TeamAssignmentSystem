@@ -165,6 +165,9 @@
                      </BorderPane.margin>
                   </TreeTableView>
                </center>
+               <bottom>
+                  <Label text="If no recommended leader is shown, you are the recommended leader :) ." BorderPane.alignment="CENTER" />
+               </bottom>
             </BorderPane>
       </children>
     </AnchorPane>
