@@ -6,6 +6,7 @@ public class Student implements Comparable<Student> {
 	private final SimpleStringProperty index;
 	private final SimpleStringProperty studentID;
 	private final SimpleStringProperty studentName;
+	private final SimpleStringProperty studentEmail;
 	private final SimpleStringProperty k1Energy;
 	private final SimpleStringProperty k2Energy;
 	private final SimpleStringProperty k3Tick1;
@@ -18,6 +19,7 @@ public class Student implements Comparable<Student> {
 		this.index = new SimpleStringProperty(Integer.toString(index));
 		this.studentID = new SimpleStringProperty(student_id);
 		this.studentName = new SimpleStringProperty(student_name);
+		this.studentEmail = new SimpleStringProperty(email);
 		this.k1Energy = new SimpleStringProperty(k1_energy);
 		this.k2Energy = new SimpleStringProperty(k2_energy);
 		this.k3Tick1 = new SimpleStringProperty(k3_tick1);
@@ -78,6 +80,14 @@ public class Student implements Comparable<Student> {
 
 	public void setStudentName(String val) {
 		studentName.set(val);
+	}
+	
+	public String getStudentEmail() {
+		return studentEmail.get();
+	}
+
+	public void setStudentEmail(String val) {
+		studentEmail.set(val);
 	}
 
 	public String getK1Energy() {

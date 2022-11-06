@@ -16,6 +16,9 @@ public class StudentTableController {
 
     @FXML
     private TableColumn studentNameColumn;
+    
+    @FXML
+    private TableColumn studentEmailColumn;
 
     @FXML
     private TableColumn K1EnergyColumn;
@@ -43,6 +46,7 @@ public class StudentTableController {
     	rowIndexColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("index"));
     	studentIDColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("studentID"));
     	studentNameColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("studentName"));
+    	studentEmailColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("studentEmail"));
     	K1EnergyColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("k1Energy"));
     	K2EnergyColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("k2Energy"));
     	K3Tick1Column.setCellValueFactory(new PropertyValueFactory<Student, String>("k3Tick1"));
