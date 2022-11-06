@@ -1,21 +1,32 @@
 package comp3111G15;
 
+import comp3111G15.Library_sample._Statistics;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class StatisticsTableController {
 
     @FXML
-    private TableColumn<?, ?> entry_column;
+    private TableView<Statistics> stat_table;
+    
+    @FXML
+    private TableColumn row_index_column;
+    
+    @FXML
+    private TableColumn entry_column;
+    
+    @FXML
+    private TableColumn value_column;
+    
 
     @FXML
-    private TableColumn<?, ?> row_index_column;
+    protected void initialize() {
+    	stat_table.setEditable(true);
+    	row_index_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("index"));
 
-    @FXML
-    private TableView<?> stat_table;
-
-    @FXML
-    private TableColumn<?, ?> value_column;
-
+    	stat_table.setItems(InputManager.stat_data);
+    	stat_table.getColumns().addAll(row_index_column);
+    }
 }

@@ -159,12 +159,12 @@ public class InputManager {
 		for (String a : ta) {
 			System.out.println(a);
 		}
-		stat_data.add(new Statistics("Total Number of Students", Integer.toString(student_data.size())));
-		stat_data.add(new Statistics("K1_Energy(Average, Min, Max)", get_student_k1_mmm(student_data)));
-		stat_data.add(new Statistics("K2_Energy(Average, Min, Max)", get_student_k2_mmm(student_data)));
+		stat_data.add(new Statistics(0, "Total Number of Students", Integer.toString(student_data.size())));
+		stat_data.add(new Statistics(1, "K1_Energy(Average, Min, Max)", get_student_k1_mmm(student_data)));
+		stat_data.add(new Statistics(2, "K2_Energy(Average, Min, Max)", get_student_k2_mmm(student_data)));
 		String[] t = get_k3_ticks(student_data);
-		stat_data.add(new Statistics("K3_Tick1 = 1", t[0]));
-		stat_data.add(new Statistics("K3_Tick2 = 1", t[1]));
-		stat_data.add(new Statistics("My_Preference = 1", t[2]));
+		stat_data.add(new Statistics(3, "K3_Tick1 = 1", t[0]));
+		stat_data.add(new Statistics(4, "K3_Tick2 = 1", t[1]));
+		stat_data.add(new Statistics(5, "My_Preference = 1", t[2]));
 	}
 }

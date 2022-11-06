@@ -37,7 +37,7 @@ public class Library_sample extends Application {
 	
 	public static void main(String[] args) throws Exception {
 
-		String csvFile = "Sample Student Data File.CSV";
+		String csvFile = "StudentData.CSV";
 		Library_sample.read(csvFile);
 		System.out.println("Hello");
 		launch(args);
