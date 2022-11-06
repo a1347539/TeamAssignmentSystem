@@ -27,6 +27,12 @@ public class DisplayWindowController implements Initializable {
 
     @FXML
     private Label team_number;
+    
+    @FXML
+    private Label K1_average;
+
+    @FXML
+    private Label K2_average;
 
     @FXML
     private TreeTableView<?> teammates_table;
@@ -37,14 +43,6 @@ public class DisplayWindowController implements Initializable {
     @FXML
     private TreeTableColumn<?, ?> leader_column;
     
-    @FXML
-    private TableView<Team> energy_table;
-	
-	 @FXML
-    private TableColumn<Team, Double> energy_title_column;
-	
-    @FXML
-    private TableColumn<Team, Double> energy_content_column;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -52,14 +50,11 @@ public class DisplayWindowController implements Initializable {
 		searching_name.setText(searching_student.getName());
 		searching_id.setText(searching_student.getID());
 		
-		// Initialize team number
+		// Initialize team number and average energy
 		team_number.setText(Integer.toString(belonging_team.getID()));
+		K1_average.setText(Double.toString(belonging_team.getK1Average()));
+		K2_average.setText(Double.toString(belonging_team.getK2Average()));
 		
-		// Set up energy table
-//		energy_title_column.setCellValueFactory(new PropertyValueFactory<Team, Double>("K1_average"));
-//		energy_content_column.setCellValueFactory(new PropertyValueFactory<Team, Double>("K2_average"));
-		
-//		energy_table.setItems(getTeam());;
 	}
 	
 	private ObservableList<Team> getTeam() {
