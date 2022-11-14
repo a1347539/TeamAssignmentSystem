@@ -20,11 +20,6 @@ public class InputManager {
 	
 	public final static ObservableList<Student> student_data = FXCollections.observableArrayList();
 	
-	/**
-	 * This function get the mean, min, max of all students' K1 value
-	 * @param A list of Student objects
-	 * @return A string array of elements mean, min, max in ascending order.
-	 */
 	public static String[] get_student_k1_mmm(List<Student> student_data) {
 		int student0K1Energy = Integer.parseInt(student_data.get(0).getK1Energy());
 		int student1K1Energy = Integer.parseInt(student_data.get(1).getK1Energy());
@@ -57,11 +52,6 @@ public class InputManager {
 		return new String[] { String.format("%.1f", mean), String.format("%d", min),  String.format("%d", max) };
 	}
 	
-	/**
-	 * This function get the mean, min, max of all students' K2 value
-	 * @param A list of Student objects
-	 * @return A string array of elements mean, min, max in ascending order.
-	 */
 	public static String[] get_student_k2_mmm(List<Student> student_data) {
 		int student0K2Energy = Integer.parseInt(student_data.get(0).getK2Energy());
 		int student1K2Energy = Integer.parseInt(student_data.get(1).getK2Energy());
@@ -94,11 +84,6 @@ public class InputManager {
 		return new String[] { String.format("%.1f", mean), String.format("%d", min),  String.format("%d", max) };
 	}
 	
-	/**
-	 * This function get the mean, min, max of all students' K3 ticks
-	 * @param A list of Student objects
-	 * @return A string array of elements tick1_count, tick2_count, my_preference in ascending order.
-	 */
 	public static String[] get_k3_ticks(List<Student> student_data) {
 		int tick1_count = 0;
 		int tick2_count = 0;
@@ -121,11 +106,6 @@ public class InputManager {
 
 	public static final String delimiter = ",";
 
-	/**
-	 * Read csv file
-	 * @param A String of file name in the parent directory
-	 * @return true if the csv file is successfully read, false otherwise 
-	 */
 	// read csv file
 	public static boolean read(String csvFile) {
 		student_data.clear();
@@ -174,9 +154,6 @@ public class InputManager {
 		return false;
 	}
 
-	/**
-	 * Populate the statistics stat_data, the ArrayList will contain number_of_student, K1mmm, K2mmm, K3_Tick1, K3_Tick2, My_preference, in order
-	 */
 	public static void getStatistics() {
 		System.out.println(get_student_k2_mmm(student_data));
 		String[] ta = get_k3_ticks(student_data);
