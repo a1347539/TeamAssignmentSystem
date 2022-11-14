@@ -75,7 +75,7 @@ public class Student implements Comparable<Student> {
 	}
 
 	public String getStudentName() {
-		return studentName.get();
+		return studentName.get().replaceAll("\"", "");
 	}
 
 	public void setStudentName(String val) {
@@ -83,7 +83,7 @@ public class Student implements Comparable<Student> {
 	}
 	
 	public String getStudentEmail() {
-		return studentEmail.get();
+		return studentEmail.get().replaceAll("\"", "");
 	}
 
 	public void setStudentEmail(String val) {
@@ -131,7 +131,7 @@ public class Student implements Comparable<Student> {
 	}
 
 	public String getConcerns() {
-		return concerns.get();
+		return concerns.get().replaceAll("\"", "");
 	}
 
 	public void setConcerns(String val) {
