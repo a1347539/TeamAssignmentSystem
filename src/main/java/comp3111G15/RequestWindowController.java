@@ -2,12 +2,15 @@ package comp3111G15;
 
 import java.io.IOException;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.HBox;
@@ -41,24 +44,34 @@ public class RequestWindowController {
     
     @FXML
     public void initialize() {
-    	TextInputDialog td = new TextInputDialog();
-    	td.setHeaderText("Enter TA pw, empty for students");
-    	// td.showAndWait();
+    	String levels[] = { "Student", "TA" };
+    	ChoiceDialog<String> choiceDialog = new ChoiceDialog<String>(levels[0], levels);
+    	choiceDialog.setHeaderText("Select a user level");
+    	choiceDialog.setContentText("Who are you: ");
+    	choiceDialog.showAndWait();
+    	
     	// Set search and line chart button to disabled
-    	
     	submitButton.setDisable(true);
+    	TA_Area.setVisible(false);
     	energyViewButton.setDisable(true);
-    	user_level = Security.checkPW(td.getEditor().getText());
-    	user_level = 1;
-    	if (user_level == 0) {
-    		TA_Area.setVisible(false);
-    		// pretend the student data is pre-loaded
-        	submitButton.setDisable(!InputManager.read("StudentData.CSV"));
-    	} else {
-    		System.out.println("you are a TA");
-    		TA_Area.setVisible(true);
-    	}
     	
+    	int isCorrect = 1;
+    	if (choiceDialog.getSelectedItem() == levels[1]) {
+    		// selected TA
+    		TextInputDialog td = new TextInputDialog();
+        	td.setHeaderText("Enter TA pw, empty for students");
+        	td.showAndWait();
+        	if (Security.checkPW(td.getEditor().getText()) == 0) {
+        		Alert a = new Alert(AlertType.ERROR);
+        		a.setContentText("Incorrect password");
+        		a.showAndWait();
+        	}
+
+    		TA_Area.setVisible(true);
+    	} else {
+    		// selected student
+    		submitButton.setDisable(!InputManager.read("StudentData.CSV"));
+    	}
     }
     
     @FXML
