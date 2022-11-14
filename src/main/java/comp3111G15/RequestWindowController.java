@@ -55,19 +55,18 @@ public class RequestWindowController {
     	TA_Area.setVisible(false);
     	energyViewButton.setDisable(true);
     	
-    	int isCorrect = 1;
     	if (choiceDialog.getSelectedItem() == levels[1]) {
     		// selected TA
     		TextInputDialog td = new TextInputDialog();
         	td.setHeaderText("Enter TA pw, empty for students");
         	td.showAndWait();
-        	if (Security.checkPW(td.getEditor().getText()) == 0) {
+        	if (!Security.checkPW(td.getEditor().getText())) {
         		Alert a = new Alert(AlertType.ERROR);
         		a.setContentText("Incorrect password");
         		a.showAndWait();
+        	} else {
+        		TA_Area.setVisible(true);
         	}
-
-    		TA_Area.setVisible(true);
     	} else {
     		// selected student
     		submitButton.setDisable(!InputManager.read("StudentData.CSV"));

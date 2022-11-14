@@ -4,9 +4,14 @@ public class Security {
 
 	private static final String predefinedPW = "1234";
 	
-	public static int checkPW(String input) {
-		if (input.isEmpty()) return 0;
-		if (!input.equals(predefinedPW)) return 0;
-		return 1;
+	/**
+	 * Check input password against the default password
+	 * @param String of input
+	 * @return true if match, false otherwise
+	 */
+	public static boolean checkPW(String input) {
+		if (input.isEmpty()) return false;
+		if (!input.equals(predefinedPW)) return false;
+		return true;
 	}
 }
