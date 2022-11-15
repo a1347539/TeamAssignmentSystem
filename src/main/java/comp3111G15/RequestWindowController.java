@@ -1,6 +1,7 @@
 package comp3111G15;
 
 import java.io.IOException;
+import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,13 +44,13 @@ public class RequestWindowController {
     public void initialize() {
     	TextInputDialog td = new TextInputDialog();
     	td.setHeaderText("Enter TA pw, empty for students");
-    	// td.showAndWait();
+    	td.showAndWait();
     	// Set search and line chart button to disabled
     	
     	submitButton.setDisable(true);
     	energyViewButton.setDisable(true);
     	user_level = Security.checkPW(td.getEditor().getText());
-    	user_level = 1;
+    	//user_level = 1;
     	if (user_level == 0) {
     		TA_Area.setVisible(false);
     		// pretend the student data is pre-loaded
@@ -105,7 +106,10 @@ public class RequestWindowController {
     }
     
 	private boolean searchForTeam(Student student) {
-		for(Team team : tester.teams) {
+		ATUEngine engine = new ATUEngine();
+		List<Team> temp = engine.getTeamlist();
+//		for(Team team : tester.teams) {
+		for (Team team : temp) {
 			for(Student s : team.getMemberList()) {
 				if(s.equals(student)) {
 					// Identify the team for that searching student
