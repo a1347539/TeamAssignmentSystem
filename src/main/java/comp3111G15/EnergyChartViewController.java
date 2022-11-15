@@ -12,6 +12,13 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
+/**
+ * 
+ * The EnergyChartViewController describes the components used for the Student Key Energies
+ * Zoom Out View
+ * @author SzeWingKwan
+ *
+ */
 public class EnergyChartViewController implements Initializable {
 
     @FXML
@@ -23,6 +30,9 @@ public class EnergyChartViewController implements Initializable {
     @FXML
     private NumberAxis yAxis;
 
+    /**
+     * {@inheritDoc}
+     */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		xAxis.setLabel("Number of Students = " + InputManager.student_data.size());
@@ -45,11 +55,21 @@ public class EnergyChartViewController implements Initializable {
 		energyLineChart.getData().add(K2_series);
 	}
 	
+	/**
+	 * The method used for initialing the data for K1 trend line.
+	 * @param series K1 trend line
+	 * @param students a list of student data
+	 */
 	private void initK1SeriesData(XYChart.Series<Integer, Integer> series, List<Student> students) {
 		for(int i = 0; i < students.size(); i++)
 			series.getData().add(new XYChart.Data<Integer, Integer>(i+1, Integer.parseInt(students.get(i).getK1Energy())));
 	}
 
+	/**
+	 * The method used for initialing the data for K2 trend line.
+	 * @param series K2 trend line
+	 * @param students a list of student data
+	 */
 	private void initK2SeriesData(XYChart.Series<Integer, Integer> series, List<Student> students) {
 		for(int i = 0; i < students.size(); i++)
 			series.getData().add(new XYChart.Data<Integer, Integer>(i+1, Integer.parseInt(students.get(i).getK2Energy())));
