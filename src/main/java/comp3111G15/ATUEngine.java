@@ -16,7 +16,7 @@ public class ATUEngine {
 	
 	private List<Student> student_data = new ArrayList<Student>(InputManager.student_data);
 	private int Team_Number = student_data.size()/3;
-	// Using maps for easier check when selecting
+
 	private List<Student> K1_list = new ArrayList<Student>();
 	private List<Student> K2_list = new ArrayList<Student>();
 	private List<Student> K3_list = new ArrayList<Student>();
@@ -37,9 +37,9 @@ public class ATUEngine {
 		    	int myID = Integer.parseInt(s1.getStudentID());
 				int otherID = Integer.parseInt(s2.getStudentID());
 		    	if (s1.getK2Energy_int()>s2.getK2Energy_int())
-	                return -1;
-	            else if (s1.getK2Energy_int()<s2.getK2Energy_int())
 	                return 1;
+	            else if (s1.getK2Energy_int()<s2.getK2Energy_int())
+	                return -1;
 	            else if(s1.getK2Energy_int()==s2.getK2Energy_int()) {
 	    			if (myID < otherID) {
 	    				return -1;
@@ -50,10 +50,12 @@ public class ATUEngine {
 		    }
 		});
 		
-		K2_list = remaining.subList(0, Team_Number);
-		K3_list = remaining.subList(Team_Number, remaining.size());
-
+		K2_list = remaining.subList(remaining.size()-Team_Number, remaining.size());
+		K3_list = remaining.subList(0, remaining.size()-Team_Number);
 		
+//		System.out.println("K1 max: " + InputManager.get_student_k1_mmm(student_data)[2]);
+//		System.out.println("K2 max: " + InputManager.get_student_k2_mmm(student_data)[2]);
+//		
 //		for (int i = 0; i < Team_Number; i++)
 //			System.out.println("id is: " + K1_list.get(i).getStudentID() + " K1 energy is: " + K1_list.get(i).getK1Energy());	
 //		for (int i = 0; i < Team_Number; i++)
