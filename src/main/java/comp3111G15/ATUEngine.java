@@ -54,10 +54,10 @@ public class ATUEngine {
 		K3_list = remaining.subList(Team_Number, remaining.size());
 
 		
-		for (int i = 0; i < Team_Number; i++)
-			System.out.println("id is: " + K1_list.get(i).getStudentID() + " K1 energy is: " + K1_list.get(i).getK1Energy());	
-		for (int i = 0; i < Team_Number; i++)
-			System.out.println("id is: " + K2_list.get(i).getStudentID() + " K2 energy is: " + K2_list.get(i).getK2Energy());	
+//		for (int i = 0; i < Team_Number; i++)
+//			System.out.println("id is: " + K1_list.get(i).getStudentID() + " K1 energy is: " + K1_list.get(i).getK1Energy());	
+//		for (int i = 0; i < Team_Number; i++)
+//			System.out.println("id is: " + K2_list.get(i).getStudentID() + " K2 energy is: " + K2_list.get(i).getK2Energy());	
 	}
 	
 	public void Create_Common_Team(int i) {
@@ -124,11 +124,11 @@ public class ATUEngine {
 	
 	public ATUEngine(){
 		Create_Team();
-		for (int i = 0; i < Team_Number; i++) {
-			System.out.println("Team " + ATU_Team.get(i).getID() + " has Student 1: " + ATU_Team.get(i).getMemberList().get(0).getStudentID() + 
-					"; has Student 2: " + ATU_Team.get(i).getMemberList().get(1).getStudentID() + 
-					"; has Student 3: " + ATU_Team.get(i).getMemberList().get(2).getStudentID());
-		}
+//		for (int i = 0; i < Team_Number; i++) {
+//			System.out.println("Team " + ATU_Team.get(i).getID() + " has Student 1: " + ATU_Team.get(i).getMemberList().get(0).getStudentID() + 
+//					"; has Student 2: " + ATU_Team.get(i).getMemberList().get(1).getStudentID() + 
+//					"; has Student 3: " + ATU_Team.get(i).getMemberList().get(2).getStudentID());
+//		}
 	}
 	
 	public List<Team> getTeamlist() {
