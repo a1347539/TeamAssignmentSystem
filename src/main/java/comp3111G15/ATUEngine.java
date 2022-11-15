@@ -54,12 +54,24 @@ public class ATUEngine {
 		K3_list = remaining.subList(Team_Number, remaining.size());
 
 		
-//		for (int i = 0; i < Team_Number; i++)
-//			System.out.println("id is: " + K1_list.get(i).getStudentID() + " K1 energy is: " + K1_list.get(i).getK1Energy());	
-//		for (int i = 0; i < Team_Number; i++)
-//			System.out.println("id is: " + K2_list.get(i).getStudentID() + " K2 energy is: " + K2_list.get(i).getK2Energy());	
+		for (int i = 0; i < Team_Number; i++)
+			System.out.println("id is: " + K1_list.get(i).getStudentID() + " K1 energy is: " + K1_list.get(i).getK1Energy());	
+		for (int i = 0; i < Team_Number; i++)
+			System.out.println("id is: " + K2_list.get(i).getStudentID() + " K2 energy is: " + K2_list.get(i).getK2Energy());	
 	}
 	
+	public void Create_Common_Team(int i) {
+		List<Student> temp = new ArrayList<Student>();
+		temp.add(K1_list.get(i));
+		temp.add(K2_list.get(i));
+		temp.add(K3_list.get(i));
+		if (K1_list.get(i).getMyPreference().equals("1"))
+			ATU_Team.add(new Team(i+1, temp, 0));
+		else if (K2_list.get(i).getMyPreference().equals("1"))
+			ATU_Team.add(new Team(i+1, temp, 1));
+		else
+			ATU_Team.add(new Team(i+1, temp, 2));// Default to 2 if there is no volunteer leader or the volunteer leader is the K3_list student
+	}
 	
 	// Some finishing work on remaining students not allocated with a group in K3_list
 	public void Create_Special_Team(int i) {
@@ -69,13 +81,13 @@ public class ATUEngine {
 		temp.add(K3_list.get(i));
 		temp.add(K3_list.get(i+1));
 		if (K1_list.get(i).getMyPreference().equals("1"))
-			ATU_Team.add(new Team(i, temp, 0));
+			ATU_Team.add(new Team(i+1, temp, 0));
 		else if (K2_list.get(i).getMyPreference().equals("1"))
-			ATU_Team.add(new Team(i, temp, 1));
+			ATU_Team.add(new Team(i+1, temp, 1));
 		else if (K3_list.get(i).getMyPreference().equals("1"))
-			ATU_Team.add(new Team(i, temp, 2));
+			ATU_Team.add(new Team(i+1, temp, 2));
 		else
-			ATU_Team.add(new Team(i, temp, 3));
+			ATU_Team.add(new Team(i+1, temp, 3));
 	}
 	
 	public void Create_Team() {
@@ -86,16 +98,7 @@ public class ATUEngine {
 			for (int i = 0; i < Team_Number; i++) {
 	//			System.out.println("creating in progress..");
 	//			System.out.println(i);
-				List<Student> temp = new ArrayList<Student>();
-				temp.add(K1_list.get(i));
-				temp.add(K2_list.get(i));
-				temp.add(K3_list.get(i));
-				if (K1_list.get(i).getMyPreference().equals("1"))
-					ATU_Team.add(new Team(i, temp, 0));
-				else if (K2_list.get(i).getMyPreference().equals("1"))
-					ATU_Team.add(new Team(i, temp, 1));
-				else
-					ATU_Team.add(new Team(i, temp, 2));// Default to 2 if there is no volunteer leader or the volunteer leader is the K3_list student
+				Create_Common_Team(i);
 			}
 		}
 		else if (student_data.size() == Team_Number*3+1) {
@@ -103,16 +106,7 @@ public class ATUEngine {
 			for (int i = 0; i < Team_Number - 1; i++) {
 	//			System.out.println("creating in progress..");
 	//			System.out.println(i);
-				List<Student> temp = new ArrayList<Student>();
-				temp.add(K1_list.get(i));
-				temp.add(K2_list.get(i));
-				temp.add(K3_list.get(i));
-				if (K1_list.get(i).getMyPreference().equals("1"))
-					ATU_Team.add(new Team(i, temp, 0));
-				else if (K2_list.get(i).getMyPreference().equals("1"))
-					ATU_Team.add(new Team(i, temp, 1));
-				else
-					ATU_Team.add(new Team(i, temp, 2));// Default to 2 if there is no volunteer leader or the volunteer leader is the K3_list student
+				Create_Common_Team(i);
 			}
 			Create_Special_Team(Team_Number-1);
 		}
@@ -121,16 +115,7 @@ public class ATUEngine {
 			for (int i = 0; i < Team_Number - 2; i++) {
 	//			System.out.println("creating in progress..");
 	//			System.out.println(i);
-				List<Student> temp = new ArrayList<Student>();
-				temp.add(K1_list.get(i));
-				temp.add(K2_list.get(i));
-				temp.add(K3_list.get(i));
-				if (K1_list.get(i).getMyPreference().equals("1"))
-					ATU_Team.add(new Team(i, temp, 0));
-				else if (K2_list.get(i).getMyPreference().equals("1"))
-					ATU_Team.add(new Team(i, temp, 1));
-				else
-					ATU_Team.add(new Team(i, temp, 2));// Default to 2 if there is no volunteer leader or the volunteer leader is the K3_list student
+				Create_Common_Team(i);
 			}
 			Create_Special_Team(Team_Number-2);
 			Create_Special_Team(Team_Number-1);
@@ -139,11 +124,11 @@ public class ATUEngine {
 	
 	public ATUEngine(){
 		Create_Team();
-//		for (int i = 0; i < Team_Number; i++) {
-//			System.out.println("Team " + i + " has Student 1: " + ATU_Team.get(i).getMemberList().get(0).getStudentID() + 
-//					"; has Student 2: " + ATU_Team.get(i).getMemberList().get(1).getStudentID() + 
-//					"; has Student 3: " + ATU_Team.get(i).getMemberList().get(2).getStudentID());
-//		}
+		for (int i = 0; i < Team_Number; i++) {
+			System.out.println("Team " + ATU_Team.get(i).getID() + " has Student 1: " + ATU_Team.get(i).getMemberList().get(0).getStudentID() + 
+					"; has Student 2: " + ATU_Team.get(i).getMemberList().get(1).getStudentID() + 
+					"; has Student 3: " + ATU_Team.get(i).getMemberList().get(2).getStudentID());
+		}
 	}
 	
 	public List<Team> getTeamlist() {

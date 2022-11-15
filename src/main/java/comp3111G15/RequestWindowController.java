@@ -1,6 +1,7 @@
 package comp3111G15;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.event.ActionEvent;
@@ -17,6 +18,8 @@ import javafx.stage.Stage;
 
 public class RequestWindowController {
 
+	private List<Team> ATUResult = new ArrayList<Team>();
+	
 	private int user_level;
 	
 	// all area
@@ -26,6 +29,8 @@ public class RequestWindowController {
     @FXML
     private Button submitButton;
     
+    @FXML
+    private Button executeButton1;
     // ta area
     
     @FXML
@@ -60,6 +65,12 @@ public class RequestWindowController {
     		TA_Area.setVisible(true);
     	}
     	
+    }
+
+    @FXML
+    void onExecuteButtonPressed(ActionEvent event) {
+    	ATUEngine engine = new ATUEngine();
+		ATUResult = engine.getTeamlist();
     }
     
     @FXML
@@ -106,15 +117,21 @@ public class RequestWindowController {
     }
     
 	private boolean searchForTeam(Student student) {
-		ATUEngine engine = new ATUEngine();
-		List<Team> temp = engine.getTeamlist();
-//		for(Team team : tester.teams) {
-		for (Team team : temp) {
-			for(Student s : team.getMemberList()) {
-				if(s.equals(student)) {
-					// Identify the team for that searching student
-					DisplayWindowController.belonging_team = team;
-					return true;
+		if (ATUResult.size() == 0)
+		{
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+    		alert.setTitle("ATU Engine not executed yet.");
+    		alert.setContentText("Please press button Execute ATU Engine.");
+    		alert.showAndWait();
+		}
+		else {
+			for (Team team : ATUResult) {
+				for(Student s : team.getMemberList()) {
+					if(s.equals(student)) {
+						// Identify the team for that searching student
+						DisplayWindowController.belonging_team = team;
+						return true;
+					}
 				}
 			}
 		}
