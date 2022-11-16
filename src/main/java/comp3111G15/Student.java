@@ -45,7 +45,7 @@ public class Student implements Comparable<Student> {
 		this.k2Energy = new SimpleStringProperty(k2_energy);
 		this.k3Tick1 = new SimpleStringProperty(k3_tick1);
 		this.k3Tick2 = new SimpleStringProperty(k3_tick2);
-		this.myPreference = new SimpleStringProperty("1");
+		this.myPreference = new SimpleStringProperty(my_preference);
 		this.concerns = new SimpleStringProperty(concerns);
 	}
 	
