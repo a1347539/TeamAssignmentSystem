@@ -38,6 +38,12 @@ public class DisplayWindowController implements Initializable {
     
     @FXML
     private Label searching_id;
+    
+    @FXML
+    private Label my_K1_energy;
+
+    @FXML
+    private Label my_K2_energy;
 
     @FXML
     private Label team_number;
@@ -139,6 +145,8 @@ public class DisplayWindowController implements Initializable {
 		// Initialize student info
 		searching_name.setText(searching_student.getStudentName());
 		searching_id.setText(searching_student.getStudentID());
+		my_K1_energy.setText(searching_student.getK1Energy());
+		my_K2_energy.setText(searching_student.getK2Energy());
 		
 		// Initialize team number and average energy
 		team_number.setText(Integer.toString(belonging_team.getID()));
@@ -195,7 +203,7 @@ public class DisplayWindowController implements Initializable {
 			if(student.equals(belonging_team.getLeader()))
 				temp_student = new TreeItem<>(new TableDisplay(student.getStudentName(), "", "Yes"));
 			else
-				temp_student = new TreeItem<>(new TableDisplay(student.getStudentName(), "", ""));
+				temp_student = new TreeItem<>(new TableDisplay(student.getStudentName(), "", "No"));
 			
 			// Add info to teammate
 			TreeItem<TableDisplay> temp_id = new TreeItem<>(new TableDisplay("Student ID:", student.getStudentID(), ""));
