@@ -1,19 +1,17 @@
 package comp3111G15;
 
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import javafx.collections.ObservableList;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 
+/**
+ * 
+ * The ATUEngine Produces Team-up results and have them stored in ATU_Team dataset.
+ * @author HE Qihao
+ *
+ */
 public class ATUEngine {
-	// private ObservableList<Student> student_data = InputManager.student_data;
-	
 	private List<Student> student_data = new ArrayList<Student>(InputManager.student_data);
 	private int Team_Number = student_data.size()/3;
 
@@ -22,7 +20,10 @@ public class ATUEngine {
 	private List<Student> K3_list = new ArrayList<Student>();
 	public List<Team> ATU_Team = new ArrayList<Team>();
 	
-	// Select top(Team_Size) student_id from student_data order by K1_Energy in descending order and store into K1_List  
+	/**
+	 * Select top(Team_Size) student_id from student_data order by K1_Energy in descending order 
+	 * and store into K1_List  
+	 */
 	public void Order_by_energies() {
 		
 		Collections.sort(student_data);
@@ -62,6 +63,10 @@ public class ATUEngine {
 //			System.out.println("id is: " + K2_list.get(i).getStudentID() + " K2 energy is: " + K2_list.get(i).getK2Energy());	
 	}
 	
+	/**
+	 * Create normal teams with three students.
+	 * @param int i for (team.id-1)
+	 */
 	public void Create_Common_Team(int i) {
 		List<Student> temp = new ArrayList<Student>();
 		temp.add(K1_list.get(i));
@@ -75,7 +80,11 @@ public class ATUEngine {
 			ATU_Team.add(new Team(i+1, temp, 2));// Default to 2 if there is no volunteer leader or the volunteer leader is the K3_list student
 	}
 	
-	// Some finishing work on remaining students not allocated with a group in K3_list
+	/**
+	 * Some finishing work on remaining students not allocated with a group in K3_list, this method
+	 * create team with four students
+	 * @param int i for (team.id-1)
+	 */
 	public void Create_Special_Team(int i) {
 		List<Student> temp = new ArrayList<Student>();
 		temp.add(K1_list.get(i));
@@ -92,6 +101,9 @@ public class ATUEngine {
 			ATU_Team.add(new Team(i+1, temp, 3));
 	}
 	
+	/**
+	 * Create teams and put students from K1_list, K2_list and K3_list in each of them.
+	 */
 	public void Create_Team() {
 		System.out.println("Create_Team executed!");
 		Order_by_energies();
@@ -124,6 +136,9 @@ public class ATUEngine {
 		}
 	}
 	
+	/**
+	 * Class constructor, calls Create_Team() method to produce team-up results.
+	 */
 	public ATUEngine(){
 		Create_Team();
 //		for (int i = 0; i < Team_Number; i++) {
@@ -133,6 +148,9 @@ public class ATUEngine {
 //		}
 	}
 	
+	/**
+	 * Accessor that returns team-up results.
+	 */
 	public List<Team> getTeamlist() {
 		return ATU_Team;
 	}
