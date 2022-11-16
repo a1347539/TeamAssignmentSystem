@@ -91,7 +91,7 @@ public class RequestWindowController {
     		// selected student
     		submitButton.setDisable(!InputManager.read("StudentData.CSV"));
     		executeButton1.setVisible(false);
-    		ATUEngine engine = new ATUEngine();
+    		ATUEngine engine = new ATUEngine(InputManager.student_data);
         	ATUResult = new ArrayList<Team>(engine.getTeamlist());
     	}
     	
@@ -104,7 +104,7 @@ public class RequestWindowController {
      */
     @FXML
     void onExecuteButtonPressed(ActionEvent event) {
-    	ATUEngine engine = new ATUEngine();
+    	ATUEngine engine = new ATUEngine(InputManager.student_data);
     	ATUResult = new ArrayList<Team>(engine.getTeamlist());
 		submitButton.setDisable(false);
     }

@@ -12,8 +12,8 @@ import java.util.Comparator;
  *
  */
 public class ATUEngine {
-	private List<Student> student_data = new ArrayList<Student>(InputManager.student_data);
-	private int Team_Number = student_data.size()/3;
+	private List<Student> student_data = new ArrayList<Student>();
+	private int Team_Number = 0;
 
 	private List<Student> K1_list = new ArrayList<Student>();
 	private List<Student> K2_list = new ArrayList<Student>();
@@ -107,8 +107,11 @@ public class ATUEngine {
 	
 	/**
 	 * Create teams and put students from K1_list, K2_list and K3_list in each of them.
+	 * @param studentData for teams to be created
 	 */
-	public void Create_Team() {
+	public void Create_Team(List<Student> studentData) {
+		student_data = studentData;
+		Team_Number = student_data.size()/3;
 		System.out.println("Create_Team executed!");
 		Order_by_energies();
 		if (student_data.size() == Team_Number*3) {
@@ -142,9 +145,10 @@ public class ATUEngine {
 	
 	/**
 	 * Class constructor, calls Create_Team() method to produce team-up results.
+	 * @param studentData for ATUEngine to start running
 	 */
-	public ATUEngine(){
-		Create_Team();
+	public ATUEngine(List<Student> studentData){
+		Create_Team(studentData);
 //		for (int i = 0; i < Team_Number; i++) {
 //			System.out.println("Team " + ATU_Team.get(i).getID() + " has Student 1: " + ATU_Team.get(i).getMemberList().get(0).getStudentID() + 
 //					"; has Student 2: " + ATU_Team.get(i).getMemberList().get(1).getStudentID() + 

@@ -22,20 +22,87 @@ public class LibraryTest {
 	Student student1;
 	Student student2;
 	Student student3;
-	
+	Student student4;
+	Student student5;
+	Student student6;
+	Student student7;
+	Team team;
+	ArrayList<Student> ATUStudent;
+	Team ATUTeam1;
+	Team ATUTeam2;
+	ATUEngine ATUEngine;
 	@Before
 	public void setUp() throws Exception {
 		student_data = new ArrayList<Student>();
+		ATUStudent = new ArrayList<Student>();
+
 		student1 = new Student(0, "20004488", "SAFFRON, Corgipoo", "CorgipooSAF@connect.ust.hk", 
 				"26", "80", "0", "1", "0", "");
 		student2 = new Student(1, "20023331", "HYSSOP, Chamois", "ChamoisHYS@connect.ust.hk", 
 				"27", "85", "0", "1", "1", "");
 		student3 = new Student(2, "20067232", "CHRYSANTHEMUM, Abelisaurus", "AbelisaurusCHR@connect.ust.hk", 
 				"57", "60", "1", "0", "1", "");
+		
+		
+		
+		student4 = new Student(3, "2", "CHRYSANTHEMUM, Abelisaurus", "AbelisaurusCHR@connect.ust.hk", 
+				"1", "1", "1", "0", "1", "");
+		student5 = new Student(4, "3", "CHRYSANTHEMUM, Abelisaurus", "AbelisaurusCHR@connect.ust.hk", 
+				"1", "1", "1", "0", "1", "");
+		student6 = new Student(5, "4", "CHRYSANTHEMUM, Abelisaurus", "AbelisaurusCHR@connect.ust.hk", 
+				"1", "1", "1", "0", "1", "");
+		student7 = new Student(6, "5", "CHRYSANTHEMUM, Abelisaurus", "AbelisaurusCHR@connect.ust.hk", 
+				"1", "1", "1", "0", "1", "");
+		
 		student_data.add(student1);
 		student_data.add(student2);
 		student_data.add(student3);
-
+		
+		team = new Team(1, student_data, 0);
+		
+		ATUStudent.add(student3);
+		ATUStudent.add(student2);
+		ATUStudent.add(student1);
+		
+		ATUTeam1 = new Team(1, ATUStudent, 0);
+	}
+	
+	@Test
+	public void isATUEngineExecutedCorrectly() {
+		ATUEngine = new ATUEngine(ATUStudent);
+		assertEquals(ATUTeam1.getMemberList().get(0).getStudentID(), ATUEngine.getTeamlist().get(0).getMemberList().get(0).getStudentID());
+		assertEquals(ATUTeam1.getMemberList().get(1).getStudentID(), ATUEngine.getTeamlist().get(0).getMemberList().get(1).getStudentID());
+		assertEquals(ATUTeam1.getMemberList().get(2).getStudentID(), ATUEngine.getTeamlist().get(0).getMemberList().get(2).getStudentID());
+	}
+	
+	@Test
+	public void isTeamIdEqual() {
+		assertEquals(1, team.getID());
+	}
+	
+	@Test
+	public void isTeamLeaderEqual() {
+		assertEquals(student1, team.getLeader());
+	}
+	
+	@Test
+	public void isTeamK1AverageEqual() {
+		assertEquals((int)(student1.getK1Energy_int()+student2.getK1Energy_int()+student3.getK1Energy_int())/3, (int)team.getK1Average());
+	}
+	
+	@Test
+	public void isTeamK2AverageEqual() {
+		assertEquals((int)(student1.getK2Energy_int()+student2.getK2Energy_int()+student3.getK2Energy_int())/3, (int)team.getK2Average());
+	}
+	
+	@Test
+	public void isMemberListEqual() {
+		assertEquals(student_data, team.getMemberList());
+	}
+	
+	@Test
+	public void isTeamEqual() {
+		assertEquals(true, team.equals(team));
 	}
 	
 	@Test
@@ -55,12 +122,12 @@ public class LibraryTest {
 	
 	@Test
 	public void isStudentK1Equal() {
-		assertEquals(26, student1.getK1Energy());
+		assertEquals("26", student1.getK1Energy());
 	}
 	
 	@Test
 	public void isStudentK2Equal() {
-		assertEquals(80, student1.getK2Energy());
+		assertEquals("80", student1.getK2Energy());
 	}
 	
 	@Test
@@ -74,8 +141,8 @@ public class LibraryTest {
 	}
 	
 	@Test
-	public void isStudentK1CompareEqual() {
-		assertEquals(0, student2.compareTo(student2));
+	public void isStudentK1CompareEqual1() {
+		assertEquals(1, student2.compareTo(student2));
 	}
 	
 	@Test
@@ -90,12 +157,18 @@ public class LibraryTest {
 
 	@Test
 	public void isK1MMMEqual() {
-		assertEquals("(36.7, 26, 57)", InputManager.get_student_k1_mmm(student_data));
+		String[] k1 = InputManager.get_student_k1_mmm(student_data);
+		assertEquals("36.7", k1[0]);
+		assertEquals("26", k1[1]);
+		assertEquals("57", k1[2]);
 	}
 
 	@Test
 	public void isK2MMMEqual() {
-		assertEquals("(75.0, 60, 85)", InputManager.get_student_k2_mmm(student_data));
+		String[] k2 = InputManager.get_student_k2_mmm(student_data);
+		assertEquals("75.0", k2[0]);
+		assertEquals("60", k2[1]);
+		assertEquals("85", k2[2]);
 	}
 	
 	@Test

@@ -106,7 +106,31 @@
                               <Label fx:id="searching_id" text="student_id" />
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
+                        <VBox layoutX="20.0" layoutY="222.0" prefHeight="76.0" prefWidth="142.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="135.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="80.0" text="My K1 Energy:" />
+                                    <Label fx:id="my_K1_energy" text="0">
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="135.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="80.0" text="My K2 Energy:" />
+                                    <Label fx:id="my_K2_energy" text="0">
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="225.0" prefWidth="142.0">
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="135.0">
                                  <children>
