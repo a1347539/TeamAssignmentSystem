@@ -60,6 +60,13 @@ public class LibraryTest {
 		
 		studentChangeable = new Student(100, "0", "A, A", "x@connect.ust.hk", 
 			    "0", "0", "0", "0", "0", "");
+		studentChangeable.setStudentID("21112211");
+		studentChangeable.setStudentName("Sal");
+		studentChangeable.setStudentEmail("SalVa@connect.ust.hk");
+		studentChangeable.setK1Energy("90");
+		studentChangeable.setK2Energy("88");
+		studentChangeable.setK3Tick1("1");
+		studentChangeable.setK3Tick2("1");
 		studentChangeable.setConcerns("I am really good!");
 		studentChangeable.setIndex("101");
 		
@@ -262,9 +269,14 @@ public class LibraryTest {
 	
 	@Test
 	 public void changeConcerns() {
+		assertEquals(90, studentChangeable.getK1Energy_int());
+		assertEquals(88, studentChangeable.getK2Energy_int());
+		assertEquals("21112211", studentChangeable.getStudentID());
+		assertEquals("Sal", studentChangeable.getStudentName());
+		assertEquals("SalVa@connect.ust.hk", studentChangeable.getStudentEmail());
 		assertEquals("I am really good!", studentChangeable.getConcerns());
 		assertEquals("101", studentChangeable.getIndex());
-		assertEquals(false, studentChangeable.getK3Tick1_bool());
-		assertEquals(false, studentChangeable.getK3Tick2_bool());
+		assertEquals(true, studentChangeable.getK3Tick1_bool());
+		assertEquals(true, studentChangeable.getK3Tick2_bool());
 	 }
 }
