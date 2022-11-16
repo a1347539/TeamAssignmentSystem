@@ -24,7 +24,7 @@ public class Student implements Comparable<Student> {
 	
 	/**
 	 * Class constructor
-	 * @param index
+	 * @param index index
 	 * @param student_id student ID
 	 * @param student_name student name
 	 * @param email student email

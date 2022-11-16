@@ -9,20 +9,31 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import comp3111G15.Library_sample._Statistics;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * 
+ * The InputManager describes the resulting statistic data and student data
+ * @author SzeWingKwan
+ *
+ */
 public class InputManager {
 
 	// Task 2: Define a ObservableList for statistics data
+	/**
+	 * List of statistics
+	 */
 	public final static ObservableList<Statistics> stat_data = FXCollections.observableArrayList();
 	
+	/**
+	 * List of student information
+	 */
 	public final static ObservableList<Student> student_data = FXCollections.observableArrayList();
 	
 	/**
 	 * This function get the mean, min, max of all students' K1 value
-	 * @param A list of Student objects
+	 * @param student_data A list of Student objects
 	 * @return A string array of elements mean, min, max in ascending order.
 	 */
 	public static String[] get_student_k1_mmm(List<Student> student_data) {
@@ -59,7 +70,7 @@ public class InputManager {
 	
 	/**
 	 * This function get the mean, min, max of all students' K2 value
-	 * @param A list of Student objects
+	 * @param student_data A list of Student objects
 	 * @return A string array of elements mean, min, max in ascending order.
 	 */
 	public static String[] get_student_k2_mmm(List<Student> student_data) {
@@ -96,7 +107,7 @@ public class InputManager {
 	
 	/**
 	 * This function get the mean, min, max of all students' K3 ticks
-	 * @param A list of Student objects
+	 * @param student_data A list of Student objects
 	 * @return A string array of elements tick1_count, tick2_count, my_preference in ascending order.
 	 */
 	public static String[] get_k3_ticks(List<Student> student_data) {
@@ -119,11 +130,14 @@ public class InputManager {
 		return new String[] { String.format("%d", tick1_count), String.format("%d", tick2_count),  String.format("%d", my_preference) };
 	}
 
+	/**
+	 * Delimiter for student name
+	 */
 	public static final String delimiter = ",";
 
 	/**
 	 * Read csv file
-	 * @param A String of file name in the parent directory
+	 * @param csvFile A String of file name in the parent directory
 	 * @return true if the csv file is successfully read, false otherwise 
 	 */
 	// read csv file

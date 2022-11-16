@@ -6,6 +6,12 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * The UIApplication starts the UI of the ATU system
+ * @author SzeWingKwan
+ *
+ */
 public class UIApplication extends Application {
 	/**
 	 * Application entry point
@@ -23,6 +29,7 @@ public class UIApplication extends Application {
 
 	/**
 	 * UI entry point
+	 * @param arg argument array
 	 */
 	public static void run(String arg[]) {
 		Application.launch(arg);

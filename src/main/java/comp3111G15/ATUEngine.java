@@ -18,6 +18,10 @@ public class ATUEngine {
 	private List<Student> K1_list = new ArrayList<Student>();
 	private List<Student> K2_list = new ArrayList<Student>();
 	private List<Student> K3_list = new ArrayList<Student>();
+	
+	/**
+	 * List of team
+	 */
 	public List<Team> ATU_Team = new ArrayList<Team>();
 	
 	/**
@@ -65,7 +69,7 @@ public class ATUEngine {
 	
 	/**
 	 * Create normal teams with three students.
-	 * @param int i for (team.id-1)
+	 * @param i for (team.id-1)
 	 */
 	public void Create_Common_Team(int i) {
 		List<Student> temp = new ArrayList<Student>();
@@ -83,7 +87,7 @@ public class ATUEngine {
 	/**
 	 * Some finishing work on remaining students not allocated with a group in K3_list, this method
 	 * create team with four students
-	 * @param int i for (team.id-1)
+	 * @param i for (team.id-1)
 	 */
 	public void Create_Special_Team(int i) {
 		List<Student> temp = new ArrayList<Student>();
@@ -150,6 +154,7 @@ public class ATUEngine {
 	
 	/**
 	 * Accessor that returns team-up results.
+	 * @return list of resulting team
 	 */
 	public List<Team> getTeamlist() {
 		return ATU_Team;

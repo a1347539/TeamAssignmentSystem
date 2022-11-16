@@ -1,11 +1,15 @@
 package comp3111G15;
 
-import comp3111G15.Library_sample._Statistics;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+/**
+ * The StatisticTableController controls the window for displaying statistics table
+ * @author SzeWingKwan
+ *
+ */
 public class StatisticsTableController {
 
     @FXML
