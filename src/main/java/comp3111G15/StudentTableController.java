@@ -6,6 +6,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+/**
+ * 
+ * The StudentTableController controls the window displaying the student information table
+ * @author SzeWingKwan
+ *
+ */
 public class StudentTableController {
 	
     @FXML

@@ -2,6 +2,12 @@ package comp3111G15;
 
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * 
+ * The Statistics shows table for students information
+ * @author LiChunTak
+ *
+ */
 public class Statistics {
 	
 	private final SimpleStringProperty index;
@@ -10,9 +16,9 @@ public class Statistics {
 
 	/**
 	 * Constructor of Statistics
-	 * @param index
-	 * @param fName
-	 * @param lName
+	 * @param index index
+	 * @param fName first name
+	 * @param lName last name
 	 */
 	public Statistics(int index, String fName, String lName) {
 		this.index = new SimpleStringProperty(Integer.toString(index));
@@ -30,6 +36,7 @@ public class Statistics {
 
 	/**
 	 * Set index of Statistics
+	 * @param val index
 	 */
 	public void setIndex(String val) {
 		index.set(val);
@@ -45,6 +52,7 @@ public class Statistics {
 
 	/**
 	 * Set entry of Statistics
+	 * @param val entry
 	 */
 	public void setEntry(String val) {
 		entry.set(val);
@@ -60,6 +68,7 @@ public class Statistics {
 
 	/**
 	 * Set value of Statistics
+	 * @param val value
 	 */
 	public void setValue(String val) {
 		value.set(val);

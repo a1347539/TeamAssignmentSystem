@@ -10,6 +10,12 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * 
+ * The LibraryTest is used for unit testing
+ * @author SzeWingKwan
+ *
+ */
 public class LibraryTest {
 	
 	ArrayList<Student> student_data;
