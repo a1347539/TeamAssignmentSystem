@@ -145,6 +145,7 @@ public class DisplayWindowController implements Initializable {
 		// Initialize student info
 		searching_name.setText(searching_student.getStudentName());
 		searching_id.setText(searching_student.getStudentID());
+		// Display key energies
 		my_K1_energy.setText(searching_student.getK1Energy());
 		my_K2_energy.setText(searching_student.getK2Energy());
 		
