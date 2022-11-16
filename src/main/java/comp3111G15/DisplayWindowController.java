@@ -211,9 +211,9 @@ public class DisplayWindowController implements Initializable {
 			TreeItem<TableDisplay> temp_email = new TreeItem<>(new TableDisplay("Email:", student.getStudentEmail(), ""));
 			TreeItem<TableDisplay> temp_K1 = new TreeItem<>(new TableDisplay("K1 Energy:", student.getK1Energy(), ""));
 			TreeItem<TableDisplay> temp_K2 = new TreeItem<>(new TableDisplay("K2 Energy:", student.getK2Energy(), ""));
-			TreeItem<TableDisplay> temp_K3_1 = new TreeItem<>(new TableDisplay("K3 Tick 1:", student.getK3Tick1(), ""));
-			TreeItem<TableDisplay> temp_K3_2 = new TreeItem<>(new TableDisplay("K3 Tick 2:", student.getK3Tick2(), ""));
-			TreeItem<TableDisplay> temp_pref = new TreeItem<>(new TableDisplay("Preference:", student.getMyPreference(), ""));
+			TreeItem<TableDisplay> temp_K3_1 = new TreeItem<>(new TableDisplay("K3 Tick 1:", convertBooleanString(student.getK3Tick1()), ""));
+			TreeItem<TableDisplay> temp_K3_2 = new TreeItem<>(new TableDisplay("K3 Tick 2:", convertBooleanString(student.getK3Tick2()), ""));
+			TreeItem<TableDisplay> temp_pref = new TreeItem<>(new TableDisplay("Preference:", convertBooleanString(student.getMyPreference()), ""));
 			TreeItem<TableDisplay> temp_concern = new TreeItem<>(new TableDisplay("Concerns:", student.getConcerns(), ""));
 			
 			temp_student.getChildren().addAll(temp_id, temp_email, temp_K1, temp_K2, temp_K3_1, temp_K3_2, temp_pref, temp_concern);
@@ -221,7 +221,19 @@ public class DisplayWindowController implements Initializable {
 			
 			root.getChildren().add(temp_student);
 		}
-		
+	}
+	
+	/**
+	 * The method converts boolean expressions to Yes or No
+	 * @param val boolean string
+	 * @return Yes/No
+	 */
+	private String convertBooleanString(String val) {
+		if(val.equals("0") || val.equals("false"))
+			return "No";
+		else if(val.equals("1") || val.equals("true"))
+			return "Yes";
+		else return val;
 	}
 
 }
