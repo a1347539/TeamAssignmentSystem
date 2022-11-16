@@ -74,6 +74,11 @@ public class RequestWindowController {
     	
     }
 
+    /**
+     * The method used for controlling the button event for ATU Engine Execution that will produce
+     * team-up results and store them for later display use.
+     * @param event on execute button is pressed 
+     */
     @FXML
     void onExecuteButtonPressed(ActionEvent event) {
     	ATUEngine engine = new ATUEngine();
