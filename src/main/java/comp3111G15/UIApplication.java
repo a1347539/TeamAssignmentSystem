@@ -7,6 +7,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class UIApplication extends Application {
+	/**
+	 * Application entry point
+	 */
 	@Override
 	public void start(Stage stage) throws Exception {
 		FXMLLoader loader = new FXMLLoader();
@@ -18,6 +21,9 @@ public class UIApplication extends Application {
 		stage.show();
 	}
 
+	/**
+	 * UI entry point
+	 */
 	public static void run(String arg[]) {
 		Application.launch(arg);
 	}

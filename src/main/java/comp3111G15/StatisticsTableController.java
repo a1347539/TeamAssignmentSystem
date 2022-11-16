@@ -21,6 +21,9 @@ public class StatisticsTableController {
     private TableColumn value_column;
     
 
+    /**
+	 * Initialize table UI with statistics
+	 */
     @FXML
     protected void initialize() {
     	InputManager.getStatistics();

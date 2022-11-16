@@ -41,6 +41,9 @@ public class StudentTableController {
     @FXML
     private TableView<Student> student_table;
 
+    /**
+     * Initialize table UI with student data
+     */
     @FXML
     protected void initialize() {
     	rowIndexColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("index"));

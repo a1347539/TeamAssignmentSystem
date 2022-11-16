@@ -23,14 +23,12 @@ import javafx.stage.Stage;
  * 
  * The RequestWindowController describes the components used for the starting window
  * of the ATU system.
- * @author SzeWingKwan, LiChunTak
+ * @author SzeWingKwan, LiChunTak, HE Qihao
  *
  */
 public class RequestWindowController {
 
 	List<Team> ATUResult;
-	
-	private int user_level;
 	
 	// all area
     @FXML
@@ -55,6 +53,9 @@ public class RequestWindowController {
     @FXML
     private Button energyViewButton;
     
+    /**
+     * Initialize the application with user authentication and display UI window
+     */
     @FXML
     public void initialize() {
     	String levels[] = { "Student", "TA" };
@@ -79,7 +80,7 @@ public class RequestWindowController {
     		TextInputDialog td = new TextInputDialog();
         	td.setHeaderText("Enter password");
         	td.showAndWait();
-        	if (Security.checkPW(td.getEditor().getText()) == 0) {
+        	if (!Security.checkPW(td.getEditor().getText())) {
         		Alert a = new Alert(AlertType.ERROR);
         		a.setContentText("Incorrect password");
         		a.showAndWait();
@@ -246,6 +247,9 @@ public class RequestWindowController {
     	}
     }
 
+    /**
+     * Set up and display statistic table for input graph
+     */
     private void statisticsTableSetup() {
     	try {
 	    	FXMLLoader loader = new FXMLLoader();
@@ -262,6 +266,9 @@ public class RequestWindowController {
     	}
     }
     
+    /**
+     * Set up and display student table for input graph
+     */
     private void studentTableSetup() {
     	try {
 	    	FXMLLoader loader = new FXMLLoader();
