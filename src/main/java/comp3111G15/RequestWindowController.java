@@ -16,6 +16,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * The RequestWindowController describes the components used for the starting window
+ * of the ATU system.
+ * @author SzeWingKwan, LiChunTak
+ *
+ */
 public class RequestWindowController {
 
 	private List<Team> ATUResult = new ArrayList<Team>();
@@ -73,6 +80,11 @@ public class RequestWindowController {
 		ATUResult = engine.getTeamlist();
     }
     
+    /**
+     * The method used for controlling the button event for displaying the Student Key Energies
+     * Zoom Out View window.
+     * @param event on button is pressed 
+     */
     @FXML
     private void onEnergyVewButtonPressed(ActionEvent event) {
     	createChartWindow();
@@ -91,6 +103,11 @@ public class RequestWindowController {
     	}
     }
 
+    /**
+     * The method used for controlling the button event for displaying the window containing 
+     * search result of the given student name or ID.
+     * @param event on button is pressed 
+     */
     @FXML
     private void onSubmitButtonPressed(ActionEvent event) {
     	// Verify user input
@@ -116,6 +133,11 @@ public class RequestWindowController {
     	}
     }
     
+    /**
+     * The method used for searching the corresponding team of the given student.
+     * @param student
+     * @return whether the team is found successfully or not
+     */
 	private boolean searchForTeam(Student student) {
 		if (ATUResult.size() == 0)
 		{
@@ -138,6 +160,11 @@ public class RequestWindowController {
 		return false;
 	}
     
+	/**
+	 * The method used for the verification of the search input.
+	 * @param input search input
+	 * @return validity
+	 */
     private boolean verifyInput(String input) {
     	for(Student student : InputManager.student_data) {
     		if(student.getStudentName().replaceAll(",", "").toLowerCase().equals(input.toLowerCase())
@@ -151,6 +178,10 @@ public class RequestWindowController {
     	return false;
     }
     
+    /**
+     * The method used for displaying the window for the Student Key Energies
+     * Zoom Out View.
+     */
     private void createChartWindow() {
     	try {
 	    	FXMLLoader loader = new FXMLLoader();
@@ -167,6 +198,9 @@ public class RequestWindowController {
     	}
     }
     
+    /**
+     * the method used for displaying the window for teaming up result table according to the search.
+     */
     private void createTeamTableWindow() {
     	try {
 	    	FXMLLoader loader = new FXMLLoader();
