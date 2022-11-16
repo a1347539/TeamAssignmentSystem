@@ -27,8 +27,10 @@ import javafx.stage.Stage;
  *
  */
 public class RequestWindowController {
+	
+	public static String levels[] = { "Student", "TA" };
 
-	List<Team> ATUResult;
+	private static List<Team> ATUResult;
 	
 	// all area
     @FXML
@@ -58,7 +60,6 @@ public class RequestWindowController {
      */
     @FXML
     public void initialize() {
-    	String levels[] = { "Student", "TA" };
     	ChoiceDialog<String> choiceDialog = new ChoiceDialog<String>(levels[0], levels);
     	choiceDialog.setHeaderText("Select a user level");
     	choiceDialog.setContentText("Who are you: ");
@@ -75,26 +76,54 @@ public class RequestWindowController {
     	}
     	
     	// System.out.println(result.isPresent());
-    	if (choiceDialog.getSelectedItem() == levels[1]) {
+    	
+    	
+    	ArrayList<Boolean> temp = onDialogGetResult(choiceDialog.getSelectedItem());
+    	
+    	if (temp.get(0)) {
     		// selected TA
     		TextInputDialog td = new TextInputDialog();
-        	td.setHeaderText("Enter password");
-        	td.showAndWait();
-        	if (!Security.checkPW(td.getEditor().getText())) {
-        		Alert a = new Alert(AlertType.ERROR);
-        		a.setContentText("Incorrect password");
+    		
+    		while (true) {
+    			td.setHeaderText("Enter password");
+            	Optional<String> pwDialogResult = td.showAndWait();
+            	if (!pwDialogResult.isPresent()) { System.exit(0); }
+    			if (Security.checkPW(td.getEditor().getText())) {
+    				break;
+    			}
+    			Alert a = new Alert(AlertType.ERROR);
+    			a.setContentText("Incorrect password");
         		a.showAndWait();
-        	} else {
-        		TA_Area.setVisible(true);
-        	}
+    		}
+
+        	TA_Area.setVisible(true);
+        	
     	} else {
     		// selected student
-    		submitButton.setDisable(!InputManager.read("StudentData.CSV"));
+    		submitButton.setDisable(temp.get(1));
     		executeButton1.setVisible(false);
+    	}
+    	
+    }
+    
+    /**
+     * Get the result of the dialog which asks for user level
+     * @param result from the dialog
+     * @return ArrayList<Boolean>, first element: If TA return true, else false, second element: If csv read successful return true, else false
+     */
+    public static ArrayList<Boolean> onDialogGetResult(String result) {
+    	ArrayList<Boolean> temp = new ArrayList<Boolean>();
+    	if (result == levels[1]) {
+    		// selected TA
+    		temp.add(true);
+    	} else {
+    		// selected student
+    		temp.add(false);
+    		temp.add(!InputManager.read("StudentData.CSV"));
     		ATUEngine engine = new ATUEngine(InputManager.student_data);
         	ATUResult = new ArrayList<Team>(engine.getTeamlist());
     	}
-    	
+    	return temp;
     }
 
     /**
@@ -283,6 +312,16 @@ public class RequestWindowController {
     	catch (IOException e) {
     		e.printStackTrace();
     	}
+    }
+    
+    /**
+     * Display a error dialog for when the .csv filename does not exist.
+     * @param filename 
+     */
+    public static void displayIncorrectFilenameDialog(String filename) {
+    	Alert a = new Alert(AlertType.ERROR);
+		a.setContentText(String.format("Cannot find the file with name: %s", filename));
+		a.showAndWait();
     }
 }
 

@@ -153,6 +153,7 @@ public class InputManager {
 			}
 			else {
 				// report error
+				RequestWindowController.displayIncorrectFilenameDialog(csvFile);
 				return false;
 			}
 			
@@ -164,13 +165,32 @@ public class InputManager {
 			int index = 0;
 			while ((line = br.readLine()) != null) {
 				tempArr = line.split(delimiter);
-				student_data.add( 
-						new Student( index++,
-								tempArr[0], tempArr[1].concat(tempArr[2]), tempArr[3],
-								tempArr[4], tempArr[5], tempArr[6], 
-								tempArr[7], tempArr[8], tempArr[9]
-								)
-						);
+				// System.out.println(tempArr.length);
+//				if (tempArr.length == 8) {
+//					student_data.add( 
+//							new Student( index++,
+//									tempArr[0], tempArr[1].concat(tempArr[2]), tempArr[3],
+//									tempArr[4], tempArr[5], tempArr[6], 
+//									tempArr[7], "", ""
+//									)
+//							);
+				if (tempArr.length == 9) {
+					student_data.add( 
+							new Student( index++,
+									tempArr[0], tempArr[1].concat(tempArr[2]), tempArr[3],
+									tempArr[4], tempArr[5], tempArr[6], 
+									tempArr[7], tempArr[8], ""
+									)
+							);
+				} else if (tempArr.length == 10) {
+					student_data.add( 
+							new Student( index++,
+									tempArr[0], tempArr[1].concat(tempArr[2]), tempArr[3],
+									tempArr[4], tempArr[5], tempArr[6], 
+									tempArr[7], tempArr[8], tempArr[9]
+									)
+							);
+				}
 			}
 			br.close();
 			
@@ -191,20 +211,23 @@ public class InputManager {
 	/**
 	 * Populate the statistics stat_data, the ArrayList will contain number_of_student, K1mmm, K2mmm, K3_Tick1, K3_Tick2, My_preference, in order
 	 */
-	public static void getStatistics() {
-		System.out.println(get_student_k2_mmm(student_data));
+	public static ArrayList<Statistics> getStatistics(List<Student> studentData) {
+		ArrayList<Statistics> statistics = new ArrayList<Statistics>();
+		
 		String[] ta = get_k3_ticks(student_data);
-		for (String a : ta) {
-			System.out.println(a);
-		}
-		stat_data.add(new Statistics(0, "Total Number of Students", Integer.toString(student_data.size())));
-		String[] k1s = get_student_k1_mmm(student_data);
-		stat_data.add(new Statistics(1, "K1_Energy(Average, Min, Max)", String.format("(%s, %s, %s)", k1s[0], k1s[1], k1s[2])));
-		String[] k2s = get_student_k2_mmm(student_data);
-		stat_data.add(new Statistics(2, "K2_Energy(Average, Min, Max)", String.format("(%s, %s, %s)", k2s[0], k2s[1], k2s[2])));
-		String[] t = get_k3_ticks(student_data);
-		stat_data.add(new Statistics(3, "K3_Tick1 = 1", t[0]));
-		stat_data.add(new Statistics(4, "K3_Tick2 = 1", t[1]));
-		stat_data.add(new Statistics(5, "My_Preference = 1", t[2]));
+//		for (String a : ta) {
+//			System.out.println(a);
+//		}
+		statistics.add(new Statistics(0, "Total Number of Students", Integer.toString(studentData.size())));
+		String[] k1s = get_student_k1_mmm(studentData);
+		statistics.add(new Statistics(1, "K1_Energy(Average, Min, Max)", String.format("(%s, %s, %s)", k1s[0], k1s[1], k1s[2])));
+		String[] k2s = get_student_k2_mmm(studentData);
+		statistics.add(new Statistics(2, "K2_Energy(Average, Min, Max)", String.format("(%s, %s, %s)", k2s[0], k2s[1], k2s[2])));
+		String[] t = get_k3_ticks(studentData);
+		statistics.add(new Statistics(3, "K3_Tick1 = 1", t[0]));
+		statistics.add(new Statistics(4, "K3_Tick2 = 1", t[1]));
+		statistics.add(new Statistics(5, "My_Preference = 1", t[2]));
+		
+		return statistics;
 	}
 }

@@ -1,5 +1,8 @@
 package comp3111G15;
 
+import java.util.ArrayList;
+
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -30,7 +33,8 @@ public class StatisticsTableController {
 	 */
     @FXML
     protected void initialize() {
-    	InputManager.getStatistics();
+    	ArrayList<Statistics> stats = InputManager.getStatistics(InputManager.student_data);
+    	InputManager.stat_data.addAll(stats);
     	row_index_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("index"));
     	entry_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("entry"));
     	value_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("value"));

@@ -45,8 +45,18 @@ public class Student implements Comparable<Student> {
 		this.k2Energy = new SimpleStringProperty(k2_energy);
 		this.k3Tick1 = new SimpleStringProperty(k3_tick1);
 		this.k3Tick2 = new SimpleStringProperty(k3_tick2);
-		this.myPreference = new SimpleStringProperty(my_preference);
-		this.concerns = new SimpleStringProperty(concerns);
+		// System.out.println(my_preference);
+		String replacement1 = my_preference;
+		if (my_preference.isEmpty()) {
+			replacement1 = "0";
+		}
+		this.myPreference = new SimpleStringProperty(replacement1);
+		// System.out.println(concerns);
+		String replacement2 = concerns;
+		if (concerns.isEmpty()) {
+			replacement2 = "...";
+		}
+		this.concerns = new SimpleStringProperty(replacement2);
 	}
 	
 	/**

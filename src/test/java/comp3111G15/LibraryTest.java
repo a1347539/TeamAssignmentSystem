@@ -26,11 +26,13 @@ public class LibraryTest {
 	Student student5;
 	Student student6;
 	Student student7;
+	Student student8;
 	Team team;
 	ArrayList<Student> ATUStudent;
 	Team ATUTeam1;
 	Team ATUTeam2;
 	ATUEngine ATUEngine;
+	Student studentChangeable;
 	@Before
 	public void setUp() throws Exception {
 		student_data = new ArrayList<Student>();
@@ -53,6 +55,13 @@ public class LibraryTest {
 				"1", "1", "1", "0", "1", "");
 		student7 = new Student(6, "5", "CHRYSANTHEMUM, Abelisaurus", "AbelisaurusCHR@connect.ust.hk", 
 				"1", "1", "1", "0", "1", "");
+		student8 = new Student(7, "5", "CHRYSANTHEMUM, Abelisaurus", "AbelisaurusCHR@connect.ust.hk", 
+				"14", "1", "1", "0", "1", "I hate freeriders");
+		
+		studentChangeable = new Student(100, "0", "A, A", "x@connect.ust.hk", 
+			    "0", "0", "0", "0", "0", "");
+		studentChangeable.setConcerns("I am really good!");
+		studentChangeable.setIndex("101");
 		
 		student_data.add(student1);
 		student_data.add(student2);
@@ -65,14 +74,6 @@ public class LibraryTest {
 		ATUStudent.add(student1);
 		
 		ATUTeam1 = new Team(1, ATUStudent, 0);
-	}
-	
-	@Test
-	public void isATUEngineExecutedCorrectly() {
-		ATUEngine = new ATUEngine(ATUStudent);
-		assertEquals(ATUTeam1.getMemberList().get(0).getStudentID(), ATUEngine.getTeamlist().get(0).getMemberList().get(0).getStudentID());
-		assertEquals(ATUTeam1.getMemberList().get(1).getStudentID(), ATUEngine.getTeamlist().get(0).getMemberList().get(1).getStudentID());
-		assertEquals(ATUTeam1.getMemberList().get(2).getStudentID(), ATUEngine.getTeamlist().get(0).getMemberList().get(2).getStudentID());
 	}
 	
 	@Test
@@ -188,4 +189,82 @@ public class LibraryTest {
 		String t = InputManager.get_k3_ticks(student_data)[2];
 		assertEquals("2", t);
 	}
+	
+	@Test
+	public void isPasswordCorrect() {
+		assertFalse(Security.checkPW("abcd"));
+		assertTrue(Security.checkPW("1234"));
+	}
+	
+	@Test
+	public void checkUserLevelDialogResult() {
+		ArrayList<Boolean> results1 = RequestWindowController.onDialogGetResult(RequestWindowController.levels[0]);
+		assertFalse(results1.get(0));
+		assertFalse(results1.get(1));
+		ArrayList<Boolean> result2 = RequestWindowController.onDialogGetResult(RequestWindowController.levels[1]);
+		assertTrue(result2.get(0));
+	}
+	
+	@Test
+	public void isATUEngineExecutedCorrectly() {
+		ArrayList<Student> temp = new ArrayList<Student>();
+		temp.add(student1);
+		temp.add(student2);
+		temp.add(student3);
+		
+		ATUEngine = new ATUEngine(temp);
+		assertEquals(ATUTeam1.getMemberList().get(0).getStudentID(), ATUEngine.getTeamlist().get(0).getMemberList().get(0).getStudentID());
+		assertEquals(ATUTeam1.getMemberList().get(1).getStudentID(), ATUEngine.getTeamlist().get(0).getMemberList().get(1).getStudentID());
+		assertEquals(ATUTeam1.getMemberList().get(2).getStudentID(), ATUEngine.getTeamlist().get(0).getMemberList().get(2).getStudentID());
+		
+		temp.add(student4);
+		ATUEngine = new ATUEngine(temp);
+		assertEquals(student1.getStudentID(), ATUEngine.getTeamlist().get(0).getMemberList().get(3).getStudentID());
+		
+		temp.add(student5);
+		temp.add(student6);
+		temp.add(student7);
+		temp.add(student8);
+		ATUEngine = new ATUEngine(temp);
+		assertEquals(student2.getStudentID(), ATUEngine.getTeamlist().get(1).getMemberList().get(0).getStudentID());
+		
+		student8.setMyPreference("0");
+		student3.setMyPreference("0");
+		student2.setMyPreference("0");
+		temp = new ArrayList<Student>();
+		temp.add(student1);
+		temp.add(student2);
+		temp.add(student3);
+		
+		ATUEngine = new ATUEngine(temp);
+		assertEquals(ATUTeam1.getMemberList().get(0).getStudentID(), ATUEngine.getTeamlist().get(0).getMemberList().get(0).getStudentID());
+		assertEquals(ATUTeam1.getMemberList().get(1).getStudentID(), ATUEngine.getTeamlist().get(0).getMemberList().get(1).getStudentID());
+		assertEquals(ATUTeam1.getMemberList().get(2).getStudentID(), ATUEngine.getTeamlist().get(0).getMemberList().get(2).getStudentID());
+		
+		temp.add(student4);
+		temp.add(student5);
+		temp.add(student6);
+		temp.add(student7);
+		ATUEngine = new ATUEngine(temp);
+		assertEquals(student2.getStudentID(), ATUEngine.getTeamlist().get(1).getMemberList().get(0).getStudentID());
+	}
+	
+	@Test
+	public void checkStatistics() {
+		ArrayList<Statistics> stats = InputManager.getStatistics(student_data);
+		assertEquals("3", stats.get(0).getValue());
+		assertEquals("(36.7, 26, 57)", stats.get(1).getValue());
+		assertEquals("(75.0, 60, 85)", stats.get(2).getValue());
+		assertEquals("1", stats.get(3).getValue());
+		assertEquals("2", stats.get(4).getValue());
+		assertEquals("2", stats.get(5).getValue());
+	}
+	
+	@Test
+	 public void changeConcerns() {
+		assertEquals("I am really good!", studentChangeable.getConcerns());
+		assertEquals("101", studentChangeable.getIndex());
+		assertEquals(false, studentChangeable.getK3Tick1_bool());
+		assertEquals(false, studentChangeable.getK3Tick2_bool());
+	 }
 }
