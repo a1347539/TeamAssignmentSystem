@@ -68,7 +68,7 @@ public class Student implements Comparable<Student> {
 		}
 		else return -1;
 	}
-  /**
+   /**
 	 * Gets K1 energy in integer
 	 * @return K1 energy
 	 */
