@@ -193,7 +193,7 @@ public class DisplayWindowController implements Initializable {
 			// Initialize teammate
 			TreeItem<TableDisplay> temp_student;
 			if(student.equals(belonging_team.getLeader()))
-				temp_student = new TreeItem<>(new TableDisplay(student.getStudentName(), "", "√"));
+				temp_student = new TreeItem<>(new TableDisplay(student.getStudentName(), "", "Yes"));
 			else
 				temp_student = new TreeItem<>(new TableDisplay(student.getStudentName(), "", ""));
 			

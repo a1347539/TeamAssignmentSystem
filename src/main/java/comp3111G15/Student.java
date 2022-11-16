@@ -1,5 +1,7 @@
 package comp3111G15;
 
+import java.util.Comparator;
+
 import javafx.beans.property.SimpleStringProperty;
 
 /**
@@ -54,18 +56,23 @@ public class Student implements Comparable<Student> {
 	public int compareTo(Student other) {
 		int myK1 = Integer.parseInt(this.getK1Energy());
 		int otherK1 = Integer.parseInt(other.getK1Energy());
+		int myID = Integer.parseInt(this.getStudentID());
+		int otherID = Integer.parseInt(other.getStudentID());
 		if(myK1 < otherK1)
 			return 1;
-		else if(myK1 == otherK1)
-			return 0;
+		else if(myK1 == otherK1) {
+			if (myID < otherID) {
+				return -1;
+			}
+			return 1;
+		}
 		else return -1;
 	}
-	
-	/**
+  /**
 	 * Gets K1 energy in integer
 	 * @return K1 energy
 	 */
-	public int getK1Energy_int() {
+   public int getK1Energy_int() {
 		return Integer.parseInt(k1Energy.get());
 	}
 	
