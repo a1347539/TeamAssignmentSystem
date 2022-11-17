@@ -30,7 +30,24 @@ public class ATUEngine {
 	 */
 	public void Order_by_energies() {
 		
-		Collections.sort(student_data);
+		Collections.sort(student_data, new Comparator<Student>() {
+		    @Override
+		    public int compare(Student s1, Student s2) {
+		    	int myID = Integer.parseInt(s1.getStudentID());
+				int otherID = Integer.parseInt(s2.getStudentID());
+		    	if (s1.getK1Energy_int()>s2.getK1Energy_int())
+	                return -1;
+	            else if (s1.getK1Energy_int()<s2.getK1Energy_int())
+	                return 1;
+	            else if(s1.getK1Energy_int()==s2.getK1Energy_int()) {
+	    			if (myID < otherID) {
+	    				return -1;
+	    			}
+	    			return 1;
+		        }
+	            else return -1;
+		    }
+		});
 		
 		K1_list = student_data.subList(0, Team_Number);
 		
