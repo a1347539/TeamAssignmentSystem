@@ -170,25 +170,37 @@ public class RequestWindowController {
     @FXML
     private void onSubmitButtonPressed(ActionEvent event) {
     	// Verify user input
-    	if(verifyInput(requestTextField.getText().trim())) {
+    	switch(verifyInput(requestTextField.getText().trim().replaceAll(",", ""))) {
+    	case 1:
     		// Search for team info for that student
     		if(searchForTeam(DisplayWindowController.searching_student)) {
+    			requestTextField.clear();
     			createTeamTableWindow();
     		}
     		else {
     			// When that student info is in the system but is not assigned to any team
     			Alert alert = new Alert(Alert.AlertType.ERROR);
         		alert.setTitle("Error");
-        		alert.setContentText("Oops. No team is assgined for this student.");
+        		alert.setContentText("Oops. No team has been assgined for this student. Please press button Execute ATU Engine.");
         		alert.showAndWait();
     		}
-    	}
-    	// When user has entered something but invalid
-    	else if(requestTextField.getText().trim().length() > 0) {
-    		Alert alert = new Alert(Alert.AlertType.WARNING);
-    		alert.setTitle("Invalid Input");
-    		alert.setContentText("Incorrect student name or ID. Please try again.");
-    		alert.showAndWait();
+    		break;
+    	case 2:
+    		Alert duplicatedNameAlert = new Alert(Alert.AlertType.WARNING);
+    		duplicatedNameAlert.setTitle("Duplicated Student Name");
+    		duplicatedNameAlert.setContentText("More than one student have the same student name. Please use student ID instead!");
+    		duplicatedNameAlert.showAndWait();
+    		break;
+    	case 0:
+    	default:
+    		// When user has entered something but invalid
+    		if(requestTextField.getText().trim().length() > 0) {
+        		Alert invalidInputalert = new Alert(Alert.AlertType.WARNING);
+        		invalidInputalert.setTitle("Invalid Input");
+        		invalidInputalert.setContentText("Incorrect student name or ID. Please try again.");
+        		invalidInputalert.showAndWait();
+        	}
+    		break;
     	}
     }
     
@@ -224,17 +236,24 @@ public class RequestWindowController {
 	 * @param input search input
 	 * @return validity
 	 */
-    private boolean verifyInput(String input) {
+    private int verifyInput(String input) {
+    	// Identify the searching student using student ID
     	for(Student student : InputManager.student_data) {
-    		if(student.getStudentName().replaceAll(",", "").toLowerCase().equals(input.toLowerCase())
-    				|| student.getStudentID().toLowerCase().equals(input.toLowerCase())) {
-    			// Identify the searching student
+    		if(student.getStudentID().toLowerCase().equals(input.toLowerCase())) {
     			DisplayWindowController.searching_student = student;
-    			return true;
+    			return 1;
     		}
-    			
     	}
-    	return false;
+    	// Identify the searching student using student name
+    	int count = 0;
+    	for(Student student : InputManager.student_data) {
+    		if(student.getStudentName().replaceAll(",", "").toLowerCase().equals(input.toLowerCase())) {
+    			if(++count > 1) return 2;	// more than one student have the same name
+    			DisplayWindowController.searching_student = student;
+    		}
+    	}
+    	if(count == 1) return 1;	// only one student in the list with that name
+    	return 0;	// no that student in the list
     }
     
     /**

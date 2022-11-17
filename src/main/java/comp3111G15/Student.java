@@ -64,17 +64,16 @@ public class Student implements Comparable<Student> {
 	 */
 	@Override
 	public int compareTo(Student other) {
-		int myK1 = Integer.parseInt(this.getK1Energy());
-		int otherK1 = Integer.parseInt(other.getK1Energy());
-		int myID = Integer.parseInt(this.getStudentID());
-		int otherID = Integer.parseInt(other.getStudentID());
-		if(myK1 < otherK1)
+		if(this.getK1Energy_int() < other.getK1Energy_int())
 			return 1;
-		else if(myK1 == otherK1) {
-			if (myID < otherID) {
-				return -1;
+		else if(this.getK1Energy_int() == other.getK1Energy_int()) {
+			if (this.getK2Energy_int() < other.getK2Energy_int()) {
+				return 1;
 			}
-			return 1;
+			else if(this.getK2Energy_int() == other.getK2Energy_int()) {
+				return this.getStudentID().compareTo(other.getStudentID());
+			}
+			else return -1;
 		}
 		else return -1;
 	}
