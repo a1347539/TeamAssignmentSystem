@@ -190,7 +190,13 @@
                   </TreeTableView>
                </center>
                <bottom>
-                  <Label text="If no recommended leader is shown, you are the recommended leader :) ." BorderPane.alignment="CENTER" />
+                  <Label text="If no recommended leader is shown, you are the recommended leader :) ." BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" />
+                     </BorderPane.margin></Label>
                </bottom>
             </BorderPane>
       </children>
