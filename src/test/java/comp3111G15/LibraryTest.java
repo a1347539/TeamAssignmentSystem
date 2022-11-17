@@ -83,6 +83,8 @@ public class LibraryTest {
 		ATUTeam1 = new Team(1, ATUStudent, 0);
 	}
 	
+	
+	// Tests for Team
 	@Test
 	public void isTeamIdEqual() {
 		assertEquals(1, team.getID());
@@ -113,6 +115,7 @@ public class LibraryTest {
 		assertEquals(true, team.equals(team));
 	}
 	
+	// Tests for Student
 	@Test
 	public void isStudentNameEqual() {
 		assertEquals("SAFFRON, Corgipoo", student1.getStudentName());
@@ -150,7 +153,7 @@ public class LibraryTest {
 	
 	@Test
 	public void isStudentK1CompareEqual1() {
-		assertEquals(1, student2.compareTo(student2));
+		assertEquals(0, student2.compareTo(student2));
 	}
 	
 	@Test
@@ -162,7 +165,32 @@ public class LibraryTest {
 	public void isStudentK3Tick2ReturnTrue() {
 		assertTrue(Integer.parseInt(student1.getK3Tick2()) == 1);
 	}
-
+	
+	@Test
+	public void changeConcerns() {
+		assertEquals(90, studentChangeable.getK1Energy_int());
+		assertEquals(88, studentChangeable.getK2Energy_int());
+		assertEquals("21112211", studentChangeable.getStudentID());
+		assertEquals("Sal", studentChangeable.getStudentName());
+		assertEquals("SalVa@connect.ust.hk", studentChangeable.getStudentEmail());
+		assertEquals("I am really good!", studentChangeable.getConcerns());
+		assertEquals("101", studentChangeable.getIndex());
+		assertEquals(true, studentChangeable.getK3Tick1_bool());
+		assertEquals(true, studentChangeable.getK3Tick2_bool());
+	}
+	
+	// Tests for InputManager
+	@Test
+	public void checkStatistics() {
+		ArrayList<Statistics> stats = InputManager.getStatistics(student_data);
+		assertEquals("3", stats.get(0).getValue());
+		assertEquals("(36.7, 26, 57)", stats.get(1).getValue());
+		assertEquals("(75.0, 60, 85)", stats.get(2).getValue());
+		assertEquals("1", stats.get(3).getValue());
+		assertEquals("2", stats.get(4).getValue());
+		assertEquals("2", stats.get(5).getValue());
+	}
+	
 	@Test
 	public void isK1MMMEqual() {
 		String[] k1 = InputManager.get_student_k1_mmm(student_data);
@@ -197,12 +225,14 @@ public class LibraryTest {
 		assertEquals("2", t);
 	}
 	
+	// Test for Security
 	@Test
 	public void isPasswordCorrect() {
 		assertFalse(Security.checkPW("abcd"));
 		assertTrue(Security.checkPW("1234"));
 	}
 	
+	// Test for RequestWindowController
 	@Test
 	public void checkUserLevelDialogResult() {
 		ArrayList<Boolean> results1 = RequestWindowController.onDialogGetResult(RequestWindowController.levels[0]);
@@ -212,6 +242,7 @@ public class LibraryTest {
 		assertTrue(result2.get(0));
 	}
 	
+	// Test for ATUEngine
 	@Test
 	public void isATUEngineExecutedCorrectly() {
 		ArrayList<Student> temp = new ArrayList<Student>();
@@ -255,28 +286,4 @@ public class LibraryTest {
 		ATUEngine = new ATUEngine(temp);
 		assertEquals(student2.getStudentID(), ATUEngine.getTeamlist().get(1).getMemberList().get(0).getStudentID());
 	}
-	
-	@Test
-	public void checkStatistics() {
-		ArrayList<Statistics> stats = InputManager.getStatistics(student_data);
-		assertEquals("3", stats.get(0).getValue());
-		assertEquals("(36.7, 26, 57)", stats.get(1).getValue());
-		assertEquals("(75.0, 60, 85)", stats.get(2).getValue());
-		assertEquals("1", stats.get(3).getValue());
-		assertEquals("2", stats.get(4).getValue());
-		assertEquals("2", stats.get(5).getValue());
-	}
-	
-	@Test
-	 public void changeConcerns() {
-		assertEquals(90, studentChangeable.getK1Energy_int());
-		assertEquals(88, studentChangeable.getK2Energy_int());
-		assertEquals("21112211", studentChangeable.getStudentID());
-		assertEquals("Sal", studentChangeable.getStudentName());
-		assertEquals("SalVa@connect.ust.hk", studentChangeable.getStudentEmail());
-		assertEquals("I am really good!", studentChangeable.getConcerns());
-		assertEquals("101", studentChangeable.getIndex());
-		assertEquals(true, studentChangeable.getK3Tick1_bool());
-		assertEquals(true, studentChangeable.getK3Tick2_bool());
-	 }
 }
