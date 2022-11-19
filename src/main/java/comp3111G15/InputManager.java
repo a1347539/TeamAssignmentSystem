@@ -210,6 +210,8 @@ public class InputManager {
 
 	/**
 	 * Populate the statistics stat_data, the ArrayList will contain number_of_student, K1mmm, K2mmm, K3_Tick1, K3_Tick2, My_preference, in order
+	 * @param studentData list of student data
+	 * @return statistics
 	 */
 	public static ArrayList<Statistics> getStatistics(List<Student> studentData) {
 		ArrayList<Statistics> statistics = new ArrayList<Statistics>();

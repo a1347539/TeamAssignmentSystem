@@ -28,6 +28,9 @@ import javafx.stage.Stage;
  */
 public class RequestWindowController {
 	
+	/**
+	 * two levels of users, Student or TA
+	 */
 	public static String levels[] = { "Student", "TA" };
 
 	private static List<Team> ATUResult;
@@ -109,7 +112,7 @@ public class RequestWindowController {
     /**
      * Get the result of the dialog which asks for user level
      * @param result from the dialog
-     * @return ArrayList<Boolean>, first element: If TA return true, else false, second element: If csv read successful return true, else false
+     * @return temporary boolean list, first element: If TA return true, else false, second element: If csv read successful return true, else false
      */
     public static ArrayList<Boolean> onDialogGetResult(String result) {
     	ArrayList<Boolean> temp = new ArrayList<Boolean>();
@@ -335,7 +338,7 @@ public class RequestWindowController {
     
     /**
      * Display a error dialog for when the .csv filename does not exist.
-     * @param filename 
+     * @param filename incorrect filename
      */
     public static void displayIncorrectFilenameDialog(String filename) {
     	Alert a = new Alert(AlertType.ERROR);
