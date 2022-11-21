@@ -25,3 +25,6 @@ Branch ID: dev/output
 
 ## 113 (iii).
 This is the [link](https://github.com/a1347539/comp3111-G15/blob/main/Activity1.pdf) to related documentation.
+
+## 223 (Javadoc)
+This is the [link](https://github.com/a1347539/comp3111-G15/blob/main/Javadoc_PDF.pdf) to related documentation.
