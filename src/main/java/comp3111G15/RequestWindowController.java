@@ -157,7 +157,6 @@ public class RequestWindowController {
     	
     	// Set search and line chart button enabled when file is successfully loaded
     	if (InputManager.read(CSVfilename)) {
-    		// submitButton.setDisable(false);
         	energyViewButton.setDisable(false);
         	executeButton1.setDisable(false);
         	statisticsTableSetup();

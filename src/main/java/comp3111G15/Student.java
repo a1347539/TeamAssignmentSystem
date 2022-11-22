@@ -98,7 +98,8 @@ public class Student implements Comparable<Student> {
 	 * @return true/false
 	 */
 	public boolean getK3Tick1_bool() {
-		return Integer.parseInt(k3Tick1.get()) == 1;
+		int temp = Integer.parseInt(k3Tick1.get());
+		return temp == 1;
 	}
 	
 	/**
@@ -106,7 +107,8 @@ public class Student implements Comparable<Student> {
 	 * @return true/false
 	 */
 	public boolean getK3Tick2_bool() {
-		return Integer.parseInt(k3Tick2.get()) == 1;
+		int temp = Integer.parseInt(k3Tick2.get());
+		return temp == 1;
 	}
 	
 	/**

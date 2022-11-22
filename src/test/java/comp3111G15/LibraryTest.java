@@ -245,6 +245,8 @@ public class LibraryTest {
 		assertEquals("1", stats.get(3).getValue());
 		assertEquals("2", stats.get(4).getValue());
 		assertEquals("2", stats.get(5).getValue());
+		assertEquals("0", stats.get(0).getIndex());
+		assertEquals("K3_Tick2 = 1", stats.get(4).getEntry());
 	}
 	
 	/**

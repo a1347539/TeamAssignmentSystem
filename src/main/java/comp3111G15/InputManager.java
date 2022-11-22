@@ -22,7 +22,6 @@ import javafx.scene.control.Alert;
  *
  */
 public class InputManager {
-
 	// Task 2: Define a ObservableList for statistics data
 	/**
 	 * List of statistics
@@ -151,9 +150,7 @@ public class InputManager {
 		try {
 		    if (csvFile.isEmpty()) {
 		    	// student
-		    	Alert alert = new Alert(Alert.AlertType.ERROR);
-		    	alert.setTitle("Error");
-	    		alert.setContentText("Data is not initialized, contact the TA for further instruction.");
+		    	
 		    	boolean csvFilenameFileExist = myObj.exists();
 		    	if (csvFilenameFileExist) {
 		    		Scanner myReader = new Scanner(myObj);
@@ -166,10 +163,16 @@ public class InputManager {
 					
 					if (!file.exists()) {
 						// do something
+						Alert alert = new Alert(Alert.AlertType.ERROR);
+				    	alert.setTitle("Error");
+						alert.setContentText("Data is not initialized, contact the TA for further instruction.");
 			    		alert.showAndWait();
 						System.exit(0);
 					}
 		    	} else {
+		    		Alert alert = new Alert(Alert.AlertType.ERROR);
+		        	alert.setTitle("Error");
+		    		alert.setContentText("Data is not initialized, contact the TA for further instruction.");
 		    		alert.showAndWait();
 		    		System.exit(0);
 		    	}
@@ -212,18 +215,21 @@ public class InputManager {
 //									tempArr[7], "", ""
 //									)
 //							);
+				String full_name = tempArr[1].concat(tempArr[2]);
 				if (tempArr.length == 9) {
+					++index;
 					student_data.add( 
-							new Student( index++,
-									tempArr[0], tempArr[1].concat(tempArr[2]), tempArr[3],
+							new Student( index,
+									tempArr[0], full_name, tempArr[3],
 									tempArr[4], tempArr[5], tempArr[6], 
 									tempArr[7], tempArr[8], ""
 									)
 							);
 				} else if (tempArr.length == 10) {
+					++index;
 					student_data.add( 
-							new Student( index++,
-									tempArr[0], tempArr[1].concat(tempArr[2]), tempArr[3],
+							new Student( index,
+									tempArr[0], full_name, tempArr[3],
 									tempArr[4], tempArr[5], tempArr[6], 
 									tempArr[7], tempArr[8], tempArr[9]
 									)
