@@ -45,7 +45,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="409.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="comp3111G15.RequestWindowController">
+<VBox prefHeight="409.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="comp3111G15.RequestWindowController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -86,9 +86,9 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="301.0" prefWidth="641.0" VBox.vgrow="ALWAYS">
       <children>
-            <VBox alignment="CENTER" layoutY="-1.0" prefHeight="316.0" prefWidth="641.0" spacing="10.0">
+            <VBox alignment="CENTER" layoutY="-1.0" prefHeight="438.0" prefWidth="672.0" spacing="30.0">
                <children>
                   <Label alignment="CENTER" text="Enter Student Name or ID:" textOverrun="CLIP">
                      <font>
@@ -106,31 +106,36 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Button>
+                  <HBox fx:id="TA_Area" alignment="BOTTOM_LEFT" prefHeight="146.0" prefWidth="632.0" spacing="60.0">
+                     <children>
+                        <Button fx:id="energyViewButton" mnemonicParsing="false" onAction="#onEnergyVewButtonPressed" text="Student Key Energies Zoom Out View" />
+                        <VBox alignment="BOTTOM_RIGHT" prefHeight="169.0" prefWidth="350.0" spacing="15.0">
+                           <children>
+                              <TextField fx:id="filenameTextField" prefHeight="19.0" prefWidth="265.0" promptText="Enter csv filename" text="StudentData.CSV" />
+                              <HBox prefHeight="91.0" prefWidth="350.0" spacing="5.0">
+                                 <children>
+                                    <Label prefHeight="92.0" prefWidth="269.0" text="Enter a path relative to the project's root folder (COMP3111-G15), prepend &quot;../&quot; or &quot;*/&quot; to go to a specific directory. i.e., input &quot;data/StudentData.CSV&quot;, if the .csv is in &quot;COMP3111-G15/data/StudentData.csv&quot;" textOverrun="CLIP" wrapText="true" />
+                                    <Button fx:id="LoadCSVButton" mnemonicParsing="false" onAction="#onLoadCsvButtonPressed" text="Load CSV" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="15.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
                </children>
                <padding>
-                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                  <Insets bottom="30.0" left="20.0" right="20.0" top="30.0" />
                </padding>
             </VBox>
-            <HBox fx:id="TA_Area" alignment="BOTTOM_LEFT" layoutY="279.0" prefHeight="105.0" prefWidth="642.0" spacing="60.0" AnchorPane.topAnchor="279.0">
-               <children>
-                  <Button fx:id="energyViewButton" mnemonicParsing="false" onAction="#onEnergyVewButtonPressed" text="Student Key Energies Zoom Out View" />
-                  <VBox alignment="BOTTOM_RIGHT" prefHeight="105.0" prefWidth="295.0" spacing="15.0">
-                     <children>
-                        <TextField fx:id="filenameTextField" prefHeight="23.0" prefWidth="112.0" promptText="Enter csv filename" text="StudentData.CSV" />
-                        <Button fx:id="LoadCSVButton" mnemonicParsing="false" onAction="#onLoadCsvButtonPressed" text="Load Csv" />
-                     </children>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </VBox>
-               </children>
-               <padding>
-                  <Insets bottom="20.0" left="30.0" right="30.0" top="30.0" />
-               </padding>
-               <opaqueInsets>
-                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-               </opaqueInsets>
-            </HBox>
       </children>
     </AnchorPane>
   </children>

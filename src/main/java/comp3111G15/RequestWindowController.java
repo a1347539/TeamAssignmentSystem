@@ -208,7 +208,7 @@ public class RequestWindowController {
     
     /**
      * The method used for searching the corresponding team of the given student.
-     * @param student
+     * @param student the student being searched
      * @return whether the team is found successfully or not
      */
 	private boolean searchForTeam(Student student) {
@@ -236,7 +236,7 @@ public class RequestWindowController {
 	/**
 	 * The method used for the verification of the search input.
 	 * @param input search input
-	 * @return validity
+	 * @return validity 0 when invalid, 1 when valid, 2 when duplicated name
 	 */
     private int verifyInput(String input) {
     	// Identify the searching student using student ID
@@ -255,7 +255,7 @@ public class RequestWindowController {
     		}
     	}
     	if(count == 1) return 1;	// only one student in the list with that name
-    	return 0;	// no that student in the list
+    	return 0;	// cannot find that student in the list
     }
     
     /**

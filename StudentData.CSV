@@ -79,7 +79,7 @@ stu_id,stu_name,email,k1_energy,k2_energy,k3_tick1,k3_tick2,my_pref,concerns
 20748815,"THYME, Dionysus",DionysusTHY@connect.ust.hk,37,85,0,0,0,
 20751616,"ANEMONE, Agilisaurus",AgilisaurusANE@connect.ust.hk,61,75,0,0,1,
 20752084,"ANEMONE, Afrovenator",AfrovenatorANE@connect.ust.hk,69,60,0,0,0,
-20788232,"ALLSPICE, Sturgeon",SturgeonALL@connect.ust.hk,24,85,0,0,1,
+20788232,"ALLSPICE, Beta",SturgeonALL@connect.ust.hk,24,85,0,0,1,
 20792080,"ROSEMARY, Artemis",ArtemisROS@connect.ust.hk,61,30,0,0,0,
 20800756,"CHICORY, Tanius",TaniusCHI@connect.ust.hk,61,85,0,0,0,
 20811287,"TULIP, Saturn",SaturnTUL@connect.ust.hk,18,90,0,0,0,
