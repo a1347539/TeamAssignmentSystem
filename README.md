@@ -23,11 +23,11 @@ Email: wkszeaa@connect.ust.hk
 Github ID: szeu  
 Branch ID: dev/output  
 
-## 113 (iii).
+## Activity 1
 This is the [link](submission_documents/Activity1.pdf) to related documentation.
-
-## 223 (Javadoc)
-This is the [link](submission_documents/Javadoc_PDF.pdf) to related documentation.
 
 ## Activity 2
 This is the [link](submission_documents/Activity2.pdf) to related documentation.
+
+## Javadoc
+This is the [link](submission_documents/Javadoc_PDF.pdf) to related documentation.
