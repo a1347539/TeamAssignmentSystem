@@ -122,7 +122,7 @@ public class RequestWindowController {
     	} else {
     		// selected student
     		temp.add(false);
-    		temp.add(!InputManager.read("StudentData.CSV"));
+    		temp.add(!InputManager.read(""));
     		ATUEngine engine = new ATUEngine(InputManager.student_data);
         	ATUResult = new ArrayList<Team>(engine.getTeamlist());
     	}

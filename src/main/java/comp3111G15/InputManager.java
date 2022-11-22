@@ -3,14 +3,17 @@ package comp3111G15;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
 /**
  * 
@@ -143,8 +146,43 @@ public class InputManager {
 	// read csv file
 	public static boolean read(String csvFile) {
 		student_data.clear();
+		File myObj = new File("csvfilename.txt");
 		
-		System.out.print("\n");
+		try {
+		    if (csvFile.isEmpty()) {
+		    	// student
+		    	boolean csvFilenameFileExist = myObj.exists();
+		    	if (csvFilenameFileExist) {
+		    		Scanner myReader = new Scanner(myObj);
+		    	    while (myReader.hasNextLine()) {
+		    	    	String data = myReader.nextLine();
+		    	        csvFile = data;
+		    	    }
+		    	    myReader.close();
+		    	} else {
+		    		Alert alert = new Alert(Alert.AlertType.ERROR);
+		    		alert.setTitle("Error");
+		    		alert.setContentText("Data is not initialized, contact the TA for further instruction.");
+		    		alert.showAndWait();
+		    		System.exit(0);
+		    	}
+		    } else {
+			// TA
+				// do something
+		    	File file = new File(csvFile);
+				
+				if (file.exists()) {
+					// do something
+		    		FileWriter myWriter = new FileWriter(myObj);
+		    		myWriter.write(csvFile);
+		    		myWriter.close();
+				}
+
+		    }
+		} catch (IOException e) {
+
+		}
+		
 		try {
 			File file = new File(csvFile);
 			
@@ -195,8 +233,8 @@ public class InputManager {
 			br.close();
 			
 			System.out.format("read complete with %d records \n", student_data.size());
-			
-			if (student_data.size() == 0) {
+			boolean student_data_is_empty = student_data.size() == 0;
+			if (student_data_is_empty) {
 				return false;
 			} else {
 				return true;
@@ -216,19 +254,27 @@ public class InputManager {
 	public static ArrayList<Statistics> getStatistics(List<Student> studentData) {
 		ArrayList<Statistics> statistics = new ArrayList<Statistics>();
 		
-		String[] ta = get_k3_ticks(student_data);
 //		for (String a : ta) {
 //			System.out.println(a);
 //		}
 		statistics.add(new Statistics(0, "Total Number of Students", Integer.toString(studentData.size())));
 		String[] k1s = get_student_k1_mmm(studentData);
-		statistics.add(new Statistics(1, "K1_Energy(Average, Min, Max)", String.format("(%s, %s, %s)", k1s[0], k1s[1], k1s[2])));
+		String k1_mean = k1s[0];
+		String k1_min = k1s[1];
+		String k1_max = k1s[2];
+		statistics.add(new Statistics(1, "K1_Energy(Average, Min, Max)", String.format("(%s, %s, %s)", k1_mean, k1_min, k1_max)));
 		String[] k2s = get_student_k2_mmm(studentData);
-		statistics.add(new Statistics(2, "K2_Energy(Average, Min, Max)", String.format("(%s, %s, %s)", k2s[0], k2s[1], k2s[2])));
+		String k2_mean = k2s[0];
+		String k2_min = k2s[1];
+		String k2_max = k2s[2];
+		statistics.add(new Statistics(2, "K2_Energy(Average, Min, Max)", String.format("(%s, %s, %s)", k2_mean, k2_min, k2_max)));
 		String[] t = get_k3_ticks(studentData);
-		statistics.add(new Statistics(3, "K3_Tick1 = 1", t[0]));
-		statistics.add(new Statistics(4, "K3_Tick2 = 1", t[1]));
-		statistics.add(new Statistics(5, "My_Preference = 1", t[2]));
+		String k3t1 = t[0];
+		String k3t2 = t[1];
+		String mp = t[2];
+		statistics.add(new Statistics(3, "K3_Tick1 = 1", k3t1));
+		statistics.add(new Statistics(4, "K3_Tick2 = 1", k3t2));
+		statistics.add(new Statistics(5, "My_Preference = 1", mp));
 		
 		return statistics;
 	}
