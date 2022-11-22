@@ -28,3 +28,6 @@ This is the [link](Activity1.pdf) to related documentation.
 
 ## 223 (Javadoc)
 This is the [link](Javadoc_PDF.pdf) to related documentation.
+
+## Activity 2
+This is the [link](Activity2.pdf) to related documentation.
