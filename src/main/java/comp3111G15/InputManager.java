@@ -151,6 +151,9 @@ public class InputManager {
 		try {
 		    if (csvFile.isEmpty()) {
 		    	// student
+		    	Alert alert = new Alert(Alert.AlertType.ERROR);
+		    	alert.setTitle("Error");
+	    		alert.setContentText("Data is not initialized, contact the TA for further instruction.");
 		    	boolean csvFilenameFileExist = myObj.exists();
 		    	if (csvFilenameFileExist) {
 		    		Scanner myReader = new Scanner(myObj);
@@ -159,25 +162,22 @@ public class InputManager {
 		    	        csvFile = data;
 		    	    }
 		    	    myReader.close();
+		    	    File file = new File(csvFile);
+					
+					if (!file.exists()) {
+						// do something
+			    		alert.showAndWait();
+						System.exit(0);
+					}
 		    	} else {
-		    		Alert alert = new Alert(Alert.AlertType.ERROR);
-		    		alert.setTitle("Error");
-		    		alert.setContentText("Data is not initialized, contact the TA for further instruction.");
 		    		alert.showAndWait();
 		    		System.exit(0);
 		    	}
 		    } else {
-			// TA
-				// do something
-		    	File file = new File(csvFile);
-				
-				if (file.exists()) {
-					// do something
-		    		FileWriter myWriter = new FileWriter(myObj);
-		    		myWriter.write(csvFile);
-		    		myWriter.close();
-				}
-
+		    	// TA
+	    		FileWriter myWriter = new FileWriter(myObj);
+	    		myWriter.write(csvFile);
+	    		myWriter.close();
 		    }
 		} catch (IOException e) {
 
