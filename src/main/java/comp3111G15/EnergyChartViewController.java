@@ -56,7 +56,7 @@ public class EnergyChartViewController implements Initializable {
 	}
 	
 	/**
-	 * The method used for initialing the data for K1 trend line.
+	 * The method used for initializing the data for K1 trend line.
 	 * @param series K1 trend line
 	 * @param students a list of student data
 	 */
@@ -66,7 +66,7 @@ public class EnergyChartViewController implements Initializable {
 	}
 
 	/**
-	 * The method used for initialing the data for K2 trend line.
+	 * The method used for initializing the data for K2 trend line.
 	 * @param series K2 trend line
 	 * @param students a list of student data
 	 */
