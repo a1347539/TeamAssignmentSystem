@@ -24,10 +24,10 @@ Github ID: szeu
 Branch ID: dev/output  
 
 ## Activity 1
-This is the [link](submission_documents/Activity1.pdf) to related documentation.
+This is the [link](submission_documents/Activity_1.pdf) to related documentation.
 
 ## Activity 2
-This is the [link](submission_documents/Activity2.pdf) to related documentation.
+This is the [link](submission_documents/Activity_2.pdf) to related documentation.
 
 ## Javadoc
 This is the [link](submission_documents/Javadoc_PDF.pdf) to related documentation.
