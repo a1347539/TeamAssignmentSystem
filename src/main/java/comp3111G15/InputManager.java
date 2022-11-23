@@ -216,7 +216,17 @@ public class InputManager {
 //									)
 //							);
 				String full_name = tempArr[1].concat(tempArr[2]);
-				if (tempArr.length == 9) {
+				if (tempArr.length == 8) {
+					++index;
+					student_data.add( 
+							new Student( index,
+									tempArr[0], full_name, tempArr[3],
+									tempArr[4], tempArr[5], tempArr[6], 
+									tempArr[7], "", ""
+									)
+							);
+				}
+				else if (tempArr.length == 9) {
 					++index;
 					student_data.add( 
 							new Student( index,

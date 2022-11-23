@@ -138,6 +138,23 @@ public class RequestWindowController {
     void onExecuteButtonPressed(ActionEvent event) {
     	ATUEngine engine = new ATUEngine(InputManager.student_data);
     	ATUResult = new ArrayList<Team>(engine.getTeamlist());
+    	
+    	// debug
+//    	System.out.println("Number of teams: " + ATUResult.size());
+//    	
+//    	for (Team t : ATUResult) {
+//    		for (Student s : t.getMemberList()) {
+//    			if (t.getLeader().getStudentID() == s.getStudentID()) {
+//    				System.out.printf("*%s ", s.getStudentID());
+//    			} else {
+//    				System.out.printf(" %s ", s.getStudentID());
+//    			}
+//    		}
+//    		System.out.println();
+//    	}
+//    	
+    	// end debug
+    	
 		submitButton.setDisable(false);
     }
     
