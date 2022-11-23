@@ -34,6 +34,7 @@ public class StatisticsTableController {
     @FXML
     protected void initialize() {
     	ArrayList<Statistics> stats = InputManager.getStatistics(InputManager.student_data);
+    	InputManager.stat_data.clear();
     	InputManager.stat_data.addAll(stats);
     	row_index_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("index"));
     	entry_column.setCellValueFactory(new PropertyValueFactory<Statistics, String>("entry"));
