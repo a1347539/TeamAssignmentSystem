@@ -88,7 +88,7 @@ public class RequestWindowController {
     		TextInputDialog td = new TextInputDialog();
     		
     		while (true) {
-    			td.setHeaderText("Enter password");
+    			td.setHeaderText("Enter password, password: 1234");
             	Optional<String> pwDialogResult = td.showAndWait();
             	if (!pwDialogResult.isPresent()) { System.exit(0); }
     			if (Security.checkPW(td.getEditor().getText())) {
