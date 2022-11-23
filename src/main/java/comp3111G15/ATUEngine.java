@@ -26,7 +26,8 @@ public class ATUEngine {
 	
 	/**
 	 * Select top(Team_Size) student_id from student_data order by K1_Energy in descending order 
-	 * and store into K1_List  
+	 * and store into K1_List, Then select top(Team_size) student_id from student_data order by K2_Energy
+	 * and put in K2_list by ascending order, and then put rest students in K3_list with no order
 	 */
 	public void Order_by_energies() {
 		
